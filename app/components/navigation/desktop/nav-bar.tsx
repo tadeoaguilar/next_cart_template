@@ -1,26 +1,22 @@
 "use client";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
+
+import { NavBarIcon } from "./nav-bar-logo";
 import { LoginButton } from "../../buttons/login-button";
 import { LogoutButton } from "../../buttons/logout-button";
 import { SignupButton } from "../../buttons/sign-up-button";
+import { NavBarButtons } from "./nav-bar-buttons";
 
-export const NavBarButtons = () => {
-  const { user } = useUser();
+import { NavBarTabs } from "./nav-bar-tabs";
+import { HTMLAttributes } from "react";
 
+export const NavBar = () => {
+  
   return (
-    <div className="nav-bar__buttons">
-      {!user && (
-        <>
-          <SignupButton />
-          <LoginButton />
-        </>
-      )}
-      {user && (
-        <>
-          <LogoutButton />
-        </>
-      )}
-    </div>
+    <nav className="flex flex-row flex-1 shrink-0 max-w-[85%] py-6 mx-auto p-6 ">
+      <NavBarIcon />
+      <NavBarTabs />
+      <NavBarButtons />
+    </nav>
   );
 };
