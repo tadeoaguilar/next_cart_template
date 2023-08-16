@@ -10,9 +10,10 @@ export async function GET() {
   const AZURE_TENANT_ID = process.env.AZURE_TENANT_ID 
   const AZURE_CLIENT_ID =process.env.AZURE_CLIENT_ID 
   const AZURE_CLIENT_SECRET =  process.env.AZURE_CLIENT_SECRET 
-  const account = process.env.ACCOUNT_NAME || "nextcartstorage"
+  //const account = process.env.ACCOUNT_NAME || "nextcartstorage"
+  const account = process.env.ACCOUNT_NAME || "nextcartstorage669553314"
   // Create a new queue
-  const queueName = 'ordersqueuetam';
+  const queueName = 'ordersqueue669553314';
   
   const defaultAzureCredential = new DefaultAzureCredential();
 
