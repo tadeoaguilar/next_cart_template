@@ -9,7 +9,7 @@ export const NavBarButtons = () => {
     const { user } = useUser();
     
     return (
-    <div className="flex flex-row space-x-4 ">
+    <div className=" ">
     {!user && (
       <>
         <SignupButton />

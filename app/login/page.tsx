@@ -1,7 +1,7 @@
 export default function Home() {
     return (
             <>
-            <p> Hola login</p>
+            <p className="font-poppins text-warning-next font-thin text-2xl "> Whereas recognition</p>
             </>
 
 

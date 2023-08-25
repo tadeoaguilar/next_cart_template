@@ -7,7 +7,7 @@ export const NavBarTabs = () => {
   const { user } = useUser();
 
   return (
-    <div className=" flex flex-1 items-center justify-center mr-6 text-base font-medium ">
+    <div className=" ">
       <NavBarTab path="/profile" label="Profile" />
       <NavBarTab path="/public" label="Public" />
       {user && (

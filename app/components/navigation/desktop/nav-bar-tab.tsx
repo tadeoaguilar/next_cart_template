@@ -10,17 +10,15 @@ interface NavTabProp {
 export const NavBarTab = (props: NavTabProp) => {
   const pathname = usePathname();
   const isRouteActive = (path: string) => pathname === path;
-console.log("patname",pathname)
-console.log("isroute",isRouteActive(props.path))
-console.log(props.path)
 
 
-  let navBarTabClassName = "flex flex-row items-center text-base font-medium mx-6 ";
+
+  let navBarTabClassName = "";
 
   if (isRouteActive(props.path)) {
-    navBarTabClassName += " underline solid decoration-solid decoration-violet-100 decoration-4 underline-offset-8";
+    navBarTabClassName += " ";
   }
- console.log(navBarTabClassName)
+
   return (
     <Link href={props.path} className={navBarTabClassName} >
       {props.label}
