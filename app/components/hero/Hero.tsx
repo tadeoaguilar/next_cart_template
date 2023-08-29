@@ -11,7 +11,7 @@ export const Hero = () => {
             <div className=" mx-[--main-x-margin] grid grid-cols-2  my-6 gap-6 h-[60vh] ">
             <span className=" relative row-span-2 w-full h-auto">
                    <Image 
-                        src = "/main.jpg"
+                        src = "/Main.jpg"
                         alt = "main"
                         fill={true}
                         style ={{objectFit: 'cover' }}
