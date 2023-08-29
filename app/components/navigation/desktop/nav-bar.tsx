@@ -10,6 +10,8 @@ import { NavBarSmall } from "./nav-bar-small";
 import { NavBarMidle } from "./nav-bar-midle";
 import { NavBarTabs } from "./nav-bar-tabs";
 import { HTMLAttributes } from "react";
+import { NavBarLinks } from "./nav-bar-links";
+import { Hero } from "../../hero/Hero";
 
 export const NavBar = () => {
   
@@ -18,6 +20,8 @@ export const NavBar = () => {
 
       <NavBarSmall/>
      <NavBarMidle />
+     <NavBarLinks />
+     <Hero/>
 {/*
       <NavBarIcon />
       <NavBarTabs />
