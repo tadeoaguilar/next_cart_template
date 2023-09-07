@@ -4,8 +4,12 @@
 
 @layer utilities {
   .hero-filter {
-    background: linear-gradient(108deg, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.00) 65%)  ;
+    background: linear-gradient(99deg, rgba(0, 0, 0, 0.60) 10%, rgba(0, 0, 0, 0.00) 65%)  ;
 
+  }
+  .hero-green-filter {
+    
+      background: linear-gradient(0deg, rgba(0, 38, 3, 0.80) 0%, rgba(0, 38, 3, 0.80) 100%)
   }
 }
 
