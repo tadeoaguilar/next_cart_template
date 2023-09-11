@@ -48,8 +48,8 @@ export const Hero = () => {
                             <div className="flex bg-white-next rounded-[53px] w-max items-center px-10 py-4 ">
                                 <span className="mr-4 text-[#00B207] text-base font-semibold">Shop now</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
-                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                         </div> 
@@ -78,8 +78,8 @@ export const Hero = () => {
                         <div className=" z-10 flex items-center mx-8 mt-6 py-4 ">
                                 <span className="mr-4 text-[#00B207] text-base font-semibold">Shop now</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
-                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
 
@@ -102,8 +102,8 @@ export const Hero = () => {
                                 <div className=" z-10 flex items-center mx-8 mt-6 py-4 ">
                                 <span className="mr-4 text-[#00B207] text-base font-semibold">Shop now</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
-                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16.5 7.50055H1.5" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
                             </div>
