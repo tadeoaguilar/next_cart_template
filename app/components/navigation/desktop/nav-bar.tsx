@@ -12,6 +12,7 @@ import { NavBarTabs } from "./nav-bar-tabs";
 import { HTMLAttributes } from "react";
 import { NavBarLinks } from "./nav-bar-links";
 import { Hero } from "../../hero/Hero";
+import { Categories } from "../../categories/Categories";
 
 export const NavBar = () => {
   
@@ -22,6 +23,8 @@ export const NavBar = () => {
      <NavBarMidle />
      <NavBarLinks />
      <Hero/>
+     <Categories />
+     
 {/*
       <NavBarIcon />
       <NavBarTabs />

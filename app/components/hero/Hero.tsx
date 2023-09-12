@@ -1,6 +1,26 @@
 import Image from "next/image"
-export const Hero = () => {
 
+export  async function  Hero ()  {
+
+    
+        
+        const res = await fetch('http://localhost:3000/api/ui/nextHero')
+        const data = await res.json();
+        if (!res.ok) {
+            // This will activate the closest `error.js` Error Boundary
+            throw new Error('Failed to fetch data')
+          }      
+    
+          
+    
+    
+    
+    const image1 = data.filter((item:any)=> item.fields.order === 1)[0].fields
+    const image2 = data.filter((item:any)=> item.fields.order === 2)[0].fields
+    const image3 = data.filter((item:any)=> item.fields.order === 3)[0].fields
+    
+    
+    
     const normalizeSrc = (src: string) => src[0] === '/' ? src.slice(1) : src
 
      type propsImageLoader = {
@@ -8,6 +28,7 @@ export const Hero = () => {
         width: number;
         quality?: number;
     };
+    
  const cloudinaryLoader= ( param: propsImageLoader ) =>{
   const params = ['f_auto', 'c_limit', 'w_' + param.width, 'q_' + (param.quality || 'auto')]; 
   const url = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/${normalizeSrc(param.src)}`
@@ -15,6 +36,8 @@ export const Hero = () => {
   
   
   
+   
+
 }
   
     return (
@@ -25,10 +48,10 @@ export const Hero = () => {
             
             <div className=" mx-[--main-x-margin] grid grid-cols-3 grid-rows-2 my-6 gap-6 h-max font-poppins">
             
-            <div className=" relative row-span-2 col-span-2 w-full h-[50vh] min-h-full min-w-full">
+            <div className=" relative row-span-2  col-span-2 w-full h-full min-h-full min-w-full">
                    
                     
-                   <div className="relative hero-filter h-[50vh] z-10 rounded-[10px] flex flex-col items-center justify-start">
+                   <div className="relative hero-filter h-full z-10 rounded-[10px] flex flex-col items-center justify-start">
                         <div className="flex my-auto flex-col rounded-[10px] self-start ml-10 min-h-max  ">
                             <span className=" mx-1 font-semibold  text-5xl text-white-next mb-2 ">Fresh & Healthy</span>
                             <span className=" mx-1 font-semibold  text-5xl text-white-next mb-7">Organic Food</span>
@@ -58,8 +81,8 @@ export const Hero = () => {
                       
 
                             <Image 
-                                src = "/Main_p3jyat.jpg"
-                                alt = "Main"
+                                src =  {`${image1.imageCld[0].public_id}.${image1.imageCld[0].format}`}
+                                alt = {`${image1.imageCld[0].public_id}.${image1.imageCld[0].format}`}
                                 loader={cloudinaryLoader}
                                 fill = {true}
                                 style ={{objectFit: 'fill' , borderRadius: "10px"}}
@@ -84,11 +107,11 @@ export const Hero = () => {
                             </div>
 
                         <Image 
-                            src = "/main02.jpg"
+                            src =  {`${image2.imageCld[0].public_id}.${image2.imageCld[0].format}`}
                             alt = "main"
                             fill={true}                  
-                            className="rounded-[10px]"
-                            style ={{objectFit: 'cover' ,transform: 'scaleX(-1)'}}
+                            loader={cloudinaryLoader}
+                            style ={{objectFit: 'cover' ,transform: 'scaleX(-1)' , borderRadius: "10px"}}
                         />                   
                         
                     </div>
@@ -108,13 +131,13 @@ export const Hero = () => {
                             </div>
                             </div>
                         </div>
-                                <Image 
-                                    src = "/main03.jpg"
-                                    alt = "main"
-                                    fill={true}
-                                    className="rounded-[10px]"
-                                    style ={{objectFit: 'fill' }}
-                                />                   
+                            <Image 
+                                src =  {`${image3.imageCld[0].public_id}.${image3.imageCld[0].format}`}
+                                alt = "main"
+                                fill={true}                  
+                                loader={cloudinaryLoader}
+                                style ={{objectFit: 'cover' ,transform: 'scaleX(-1)' , borderRadius: "10px"}}
+                            />                    
                         </span>
                     
              </div>
