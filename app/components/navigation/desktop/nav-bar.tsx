@@ -22,8 +22,7 @@ export const NavBar = () => {
       <NavBarSmall/>
      <NavBarMidle />
      <NavBarLinks />
-     <Hero/>
-     <Categories />
+ 
      
 {/*
       <NavBarIcon />

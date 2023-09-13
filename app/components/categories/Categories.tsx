@@ -1,17 +1,24 @@
+'use server'
 import Image from "next/image"
+async function getData(category: string) {
+    const res = await fetch(`${process.env.SITE_URL}/api/ui/${category}`)
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data')
+      }      
+    return  res.json();
+
+  }
+
 
 export  async function  Categories ()  {
 
     
+         
         
-        const res = await fetch(`${process.env.SITE_URL}/api/ui/nextCategories`)
-        const data = await res.json();
-        if (!res.ok) {
-            // This will activate the closest `error.js` Error Boundary
-            throw new Error('Failed to fetch data')
-          }      
+          const data:any = await getData("nextCategories");
     
-          
+
           console.log(data[0].fields.imageCld[0].public_id)
           console.log(data[0].fields.category)
           data.map((item: any) => {
