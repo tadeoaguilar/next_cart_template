@@ -4,7 +4,7 @@ export  async function  Categories ()  {
 
     
         
-        const res = await fetch('http://localhost:3000/api/ui/nextCategories')
+        const res = await fetch(`${process.env.SITE_URL}/api/ui/nextCategories`)
         const data = await res.json();
         if (!res.ok) {
             // This will activate the closest `error.js` Error Boundary
