@@ -1,5 +1,6 @@
 
 import { CldImage } from "next-cloudinary";
+import * as contentful from 'contentful'
 import Image from "next/image"
 type propsImageLoader = {
     src: string;
@@ -7,12 +8,19 @@ type propsImageLoader = {
     quality?: number;
 };
 async function getData(category: string) {
-    const res = await fetch(`${process.env.SITE_URL}/api/ui/${category}`)
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-      }      
-    return  res.json();
+
+
+    const  contentfulClient = await contentful.createClient({
+        space: process.env.CONTENTFUL_SPACE_ID || "",
+        accessToken: process.env.CONTENTFUL_TOKEN || ""
+      })
+    
+    
+    return(contentfulClient.getEntries({content_type: category })  )        
+         
+
+
+    
 
   }
   
