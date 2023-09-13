@@ -4,7 +4,7 @@ export  async function  Hero ()  {
 
     
         
-        const res = await fetch('http://localhost:3000/api/ui/nextHero')
+        const res = await fetch(`${process.env.SITE_URL}/api/ui/nextHero`)
         const data = await res.json();
         if (!res.ok) {
             // This will activate the closest `error.js` Error Boundary
