@@ -16,7 +16,7 @@ export  async function  Categories ()  {
           console.log(data[0].fields.category)
           data.map((item: any) => {
                         
-        console.log( item.fields.category)
+        console.log( item.fields.imageCld[0].public_id)
 
     })     
     
@@ -32,7 +32,7 @@ export  async function  Categories ()  {
     
  const cloudinaryLoader= ( param: propsImageLoader ) =>{
   const params = ['f_auto', 'c_limit', 'w_' + param.width, 'q_' + (param.quality || 'auto')]; 
-  const url = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/${normalizeSrc(param.src)}`
+  const url = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/f_auto/${normalizeSrc(param.src)}`
   return   (url)
   
   
@@ -43,17 +43,33 @@ export  async function  Categories ()  {
   
     return (
         <>
-            <div className=" mx-[--main-x-margin]  font-poppins w-full h-auto ">  
-               <span> {
+            <div className=" mx-[--main-x-margin] h-max  font-poppins   ">  
+               <div className="grid grid-cols-6 h-[70vh] ">
+                
+                 {
                  data.map((item: any) => {
                    
                     
                     return(
-                      <span key= {item.index}> {item.fields.category}  </span>
+                      <div className=" flex flex-col justify-center items-center " key= {item.index}>
+                        <div className="relative  h-full w-full " key= {item.index}>
+                            <Image 
+                                    src =  {`${item.fields.imageCld[0].public_id}.${item.fields.imageCld[0].format}`}
+                                    alt = {`${item.fields.imageCld[0].public_id}`}
+                                    loader={cloudinaryLoader}
+                                    fill = {true}
+                                    style ={{objectFit: 'fill' , borderRadius: "10px"}}
+                                    />    
+
+                        </div>
+                        <span>{item.fields.category}</span>     
+                    </div>
+                      
+                    
                    )
             
                 })   
-                } </span>
+                } </div>
             </div>
         </>
     )

@@ -30,15 +30,10 @@ export  async function  Hero ()  {
     };
     
  const cloudinaryLoader= ( param: propsImageLoader ) =>{
-  const params = ['f_auto', 'c_limit', 'w_' + param.width, 'q_' + (param.quality || 'auto')]; 
-  const url = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/${normalizeSrc(param.src)}`
-  return   (url)
-  
-  
-  
-   
-
-}
+                        const params = ['f_auto', 'c_limit', 'w_' + param.width, 'q_' + (param.quality || 'auto')]; 
+                        const url = `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/${normalizeSrc(param.src)}`
+                        return   (url)
+                        }
   
     return (
         <>
