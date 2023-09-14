@@ -9,7 +9,7 @@ export default async function Home() {
     <Hero/>
 
     <main className="bg-white-next">
-      
+      <Categories />
     </main>
     </PageLayout>
     </>

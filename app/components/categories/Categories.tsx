@@ -1,31 +1,66 @@
-'use server'
+
 import Image from "next/image"
-async function getData(category: string) {
-    const res = await fetch(`${process.env.SITE_URL}/api/ui/${category}`)
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-      }      
-    return  res.json();
+import * as contentful from 'contentful'
+type propsImageLoader = {
+    src: string;
+    width: number;
+    quality?: number;
+};
+
+type categoryQuery = {
+    content_type: string,
+
+}
+async function getData(query:categoryQuery ) {
+
+
+    const  contentfulClient = await contentful.createClient({
+        space: process.env.CONTENTFUL_SPACE_ID || "",
+        accessToken: process.env.CONTENTFUL_TOKEN || ""
+      })
+    
+    
+    return(contentfulClient.getEntries(query)  )        
+         
+
+
+    
 
   }
 
 
+
+
+
+
+
 export  async function  Categories ()  {
 
+    type returnContent = Awaited<ReturnType<typeof getData>>
     
-         
+    const data: returnContent  = (await getData({content_type: "nextCategories"  }));
+    
+
+    type itemsType = typeof data.items
+   
+          
+    const imageData = (items: itemsType) => {
         
-          const data:any = await getData("nextCategories");
-    
+        const a = items.map((item)=> item.fields)
+                    .map((item)=> item.imageCld)
+                    .map((item)=> item)
+                    
+        
+        const b:any = a.map((item) => item).flat(100)
+        const c = b.map((item:any)=> {return (item.url)})
+        return (
+            c
 
-          console.log(data[0].fields.imageCld[0].public_id)
-          console.log(data[0].fields.category)
-          data.map((item: any) => {
-                        
-        console.log( item.fields.imageCld[0].public_id)
-
-    })     
+        )
+    } 
+         
+    console.log("image",imageData(data.items))
+          
     
     
     
@@ -52,31 +87,32 @@ export  async function  Categories ()  {
         <>
             <div className=" mx-[--main-x-margin] h-max  font-poppins   ">  
                <div className="grid grid-cols-6 h-[70vh] ">
+              
                 
-                 {
-                 data.map((item: any) => {
+                {
+                 
+                 imageData(data.items).map((item: any) => {
                    
-                    
+                    console.log(item)
                     return(
                       <div className=" flex flex-col justify-center items-center " key= {item.index}>
                         <div className="relative  h-full w-full " key= {item.index}>
-                            <Image 
-                                    src =  {`${item.fields.imageCld[0].public_id}.${item.fields.imageCld[0].format}`}
-                                    alt = {`${item.fields.imageCld[0].public_id}`}
-                                    loader={cloudinaryLoader}
-                                    fill = {true}
-                                    style ={{objectFit: 'fill' , borderRadius: "10px"}}
-                                    />    
+                        <Image 
+                                src ={item}
+                                alt = "hola"
+                                fill = {true}
+                                style ={{objectFit: 'fill' , borderRadius: "10px"}}
+                                /> 
 
                         </div>
-                        <span>{item.fields.category}</span>     
+                        <span>{"Descr"}</span>     
                     </div>
                       
                     
                    )
             
-                })   
-                } </div>
+                })   }
+             </div>
             </div>
         </>
     )
