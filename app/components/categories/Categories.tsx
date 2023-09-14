@@ -44,24 +44,23 @@ export  async function  Categories ()  {
     type itemsType = typeof data.items
    
           
+    
+
     const imageData = (items: itemsType) => {
         
-        const a = items.map((item)=> item.fields)
-                    .map((item)=> item.imageCld)
-                    .map((item)=> item)
-                    
+        const a1 = items.map((item)=>  item.fields)
+        const  a:any = a1.map((item:any)=> {return ({cat: item.category, image: item.imageCld.flat(100)})})
         
-        const b:any = a.map((item) => item).flat(100)
-        const c = b.map((item:any)=> {return (item.url)})
         return (
-            c
+            a
 
         )
     } 
          
-    console.log("image",imageData(data.items))
-          
+   const imageDataVar:any= imageData(data.items)
     
+    
+    //console.log(pto[0].image[0].url)
     
     
     const normalizeSrc = (src: string) => src[0] === '/' ? src.slice(1) : src
@@ -86,26 +85,27 @@ export  async function  Categories ()  {
     return (
         <>
             <div className=" mx-[--main-x-margin] h-max  font-poppins   ">  
+             
                <div className="grid grid-cols-6 h-[70vh] ">
               
                 
                 {
                  
-                 imageData(data.items).map((item: any) => {
+                 imageDataVar.map((item: any) => {
                    
-                    console.log(item)
+                    console.log("item",item.image[0].url)
                     return(
                       <div className=" flex flex-col justify-center items-center " key= {item.index}>
-                        <div className="relative  h-full w-full " key= {item.index}>
+                        <div className="relative  h-full w-full " key= {item.index+1}>
                         <Image 
-                                src ={item}
-                                alt = "hola"
+                                src ={item.image[0].url}
+                                alt = "item.cat"
                                 fill = {true}
                                 style ={{objectFit: 'fill' , borderRadius: "10px"}}
                                 /> 
 
                         </div>
-                        <span>{"Descr"}</span>     
+                        <span>{item.cat}</span>     
                     </div>
                       
                     
