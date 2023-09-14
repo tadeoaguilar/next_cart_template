@@ -7,7 +7,12 @@ type propsImageLoader = {
     width: number;
     quality?: number;
 };
-async function getData(category: string) {
+
+type categoryQuery = {
+    content_type: string,
+
+}
+async function getData(query:categoryQuery ) {
 
 
     const  contentfulClient = await contentful.createClient({
@@ -16,7 +21,7 @@ async function getData(category: string) {
       })
     
     
-    return(contentfulClient.getEntries({content_type: category })  )        
+    return(contentfulClient.getEntries(query)  )        
          
 
 
@@ -26,20 +31,37 @@ async function getData(category: string) {
   
 
 export  async function  Hero ()  {
+    type returnContent = Awaited<ReturnType<typeof getData>>
+    
+    const data: returnContent  = (await getData({content_type: "nextHero"  }));
+    
+
+    type itemsType = typeof data.items
+          
+    const imageData = (items: itemsType, order: number) => {
+        
+        const a = items.map((item)=> item.fields).filter((item)=> item.order=== order)
+                    .map((item)=> item.imageCld)
+                    .map((item)=> item)[0]
+   
+        
+        const e:any =a
+        return (
+            `${e[0].public_id}.${e[0].format}`
+        )
+    }
 
     
-    const data:any = await getData("nextHero");
     
     
-          
-    
-    
-    
-    const image1 = data.filter((item:any)=> item.fields.order === 1)[0].fields
-    const image2 = data.filter((item:any)=> item.fields.order === 2)[0].fields
-    const image3 = data.filter((item:any)=> item.fields.order === 3)[0].fields
-    
-    console.log(`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/v1694466946/next_hero/${image2.imageCld[0].public_id}.${image2.imageCld[0].format}`)
+        
+   
+   
+   
+        
+        
+        
+   
     
     const normalizeSrc = (src: string) => src[0] === '/' ? src.slice(1) : src
      function cloudinaryLoader  ( param: propsImageLoader )  {
@@ -90,15 +112,15 @@ export  async function  Hero ()  {
                         
                    </div>  
                       
-
+   
                             <Image 
-                                src = {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/next_hero/${image1.imageCld[0].public_id}.${image1.imageCld[0].format}`}
+                                src = {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/next_hero/${imageData(data.items,1)}`}
                                 alt = "hola"
                                 fill = {true}
                                 style ={{objectFit: 'fill' , borderRadius: "10px"}}
                                 />
                         
-                    
+   
                     
                     
                   
@@ -115,17 +137,18 @@ export  async function  Hero ()  {
                                     <path d="M10.45 1.47552L16.5 7.49953L10.45 13.5245" stroke="#00B307" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                             </div>
+
                         
                         <Image 
                                 
-                            src =   {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/v1694466946/${image2.imageCld[0].public_id}.${image2.imageCld[0].format}`}
+                            src =   {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/v1694466946/${imageData(data.items,2)}`}
                             alt = "main"
                             fill={true}                  
                            
                             style ={{objectFit: 'cover' ,transform: 'scaleX(-1)' , borderRadius: "10px"}}
                         /> 
-    
                         
+
                     </div>
                     
                         <span className=" relative  w-full h-auto ">
@@ -143,15 +166,15 @@ export  async function  Hero ()  {
                             </div>
                             </div>
                         </div>
-                        
+                            
                             <Image 
-                                src =   {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/v1694466946/${image3.imageCld[0].public_id}.${image3.imageCld[0].format}`}
+                                src =   {`https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/v1694466946/${imageData(data.items,3)}`}
                                 alt = "main"
                                 fill={true}                  
                                 
                                 style ={{objectFit: 'cover' ,transform: 'scaleX(-1)' , borderRadius: "10px"}}
                             />                    
-                        
+                    
                         </span>
                     
              </div>
