@@ -84,19 +84,20 @@ export  async function  Categories ()  {
   
     return (
         <>
+            
             <div className=" mx-[--main-x-margin] h-max  font-poppins   ">  
+            <span className="from-gray-next-900 text-[32px] font-semibold leading-4 ">Popular Categories</span>
              
-               <div className="grid grid-cols-6 h-[70vh] ">
+               <div className="grid grid-cols-6 w-full gap-6  mt-8">
               
                 
                 {
                  
                  imageDataVar.map((item: any) => {
-                   
-                    console.log("item",item.image[0].url)
+          
                     return(
-                      <div className=" flex flex-col justify-center items-center " key= {item.index}>
-                        <div className="relative  h-full w-full " key= {item.index+1}>
+                      <div className=" flex flex-col  rounded-md border border-gray-next-100 h-max justify-center items-center hover:border-[#2C742F] hover:text-[#2C742F] hover:border-solid hover:shadow-lg hover:shadow-green-next-400" key= {item.index}>
+                        <div className="relative  h-[230px] w-full " key= {item.index+1}>
                         <Image 
                                 src ={item.image[0].url}
                                 alt = "item.cat"
@@ -105,7 +106,7 @@ export  async function  Categories ()  {
                                 /> 
 
                         </div>
-                        <span>{item.cat}</span>     
+                        <span className=" mt-4 mb-6  text-lg leading-7 font-medium text-gray-next-900  hover:text-[#2C742F] ">{item.cat}</span>     
                     </div>
                       
                     

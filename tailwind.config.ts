@@ -50,6 +50,7 @@ const config: Config = {
       "hard-p-next" : "#2C742F",
       "warning-next" : "#FF8A00",
       "danger" : "#EA4B48",
+      "success" : "#2C742F"
       
     }
   },
