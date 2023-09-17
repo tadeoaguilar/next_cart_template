@@ -9,7 +9,7 @@ const Profile = () => {
   const defaultPicture =
     "https://cdn.auth0.com/blog/hello-auth0/auth0-user.png";
   const { user } = useUser();
-    console.log(user)
+  console.log(user);
   if (!user) {
     return null;
   }

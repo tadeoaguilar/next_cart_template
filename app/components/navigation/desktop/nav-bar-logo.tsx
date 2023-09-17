@@ -4,11 +4,7 @@ import Image from "next/image";
 export const NavBarIcon = () => {
   return (
     <div className="nav-bar__brand">
-        
-          
-      <Link href="/">
-       
-      </Link>
+      <Link href="/"></Link>
     </div>
   );
 };

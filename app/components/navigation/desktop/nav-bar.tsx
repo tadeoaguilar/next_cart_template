@@ -1,6 +1,5 @@
 "use client";
 
-
 import { NavBarIcon } from "./nav-bar-logo";
 import { LoginButton } from "../../buttons/login-button";
 import { LogoutButton } from "../../buttons/logout-button";
@@ -15,21 +14,18 @@ import { Hero } from "../../hero/Hero";
 import { Categories } from "../../categories/Categories";
 
 export const NavBar = () => {
-  
   return (
     <nav className="">
+      <NavBarSmall />
+      <NavBarMidle />
+      <NavBarLinks />
 
-      <NavBarSmall/>
-     <NavBarMidle />
-     <NavBarLinks />
- 
-     
-{/*
+      {/*
       <NavBarIcon />
       <NavBarTabs />
       <NavBarButtons />
 
-  */ }
+  */}
     </nav>
   );
 };
