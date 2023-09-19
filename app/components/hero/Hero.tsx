@@ -1,56 +1,29 @@
-import { CldImage } from "next-cloudinary";
-import * as contentful from "contentful";
 import Image from "next/image";
-type propsImageLoader = {
-  src: string;
-  width: number;
-  quality?: number;
-};
+import { fetchAllEntries,NextHero,ImageCld  } from "@/app/api/utils/contentful/utils";
 
-type categoryQuery = {
-  content_type: string;
-};
-async function getData(query: categoryQuery) {
-  const contentfulClient = await contentful.createClient({
-    space: process.env.CONTENTFUL_SPACE_ID || "",
-    accessToken: process.env.CONTENTFUL_TOKEN || "",
-  });
 
-  return contentfulClient.getEntries(query);
-}
+
 
 export async function Hero() {
-  type returnContent = Awaited<ReturnType<typeof getData>>;
 
-  const data: returnContent = await getData({ content_type: "nextHero" });
 
-  type itemsType = typeof data.items;
+  const data =await fetchAllEntries<NextHero>(
+    process.env.CONTENTFUL_SPACE_ID,
+    process.env.CONTENTFUL_TOKEN,
+    "nextHero"
+    )
+  
+    const imageDataVar = data.items.map((item)=>{
+      const imgData: ImageCld =item.fields.imageCld[0]
+      return { image:  String(imgData.public_id) +"."+ String(imgData.format)  , order: item.fields.order , atext: item.fields.alternateText  }})
+  
+      
+      const image1 = imageDataVar.filter((x)=> x.order ===1)
+      const image2 = imageDataVar.filter((x)=> x.order ===2)
+      const image3 = imageDataVar.filter((x)=> x.order ===3)
+      
 
-  const imageData = (items: itemsType, order: number) => {
-    const a = items
-      .map((item) => item.fields)
-      .filter((item) => item.order === order)
-      .map((item) => item.imageCld)
-      .map((item) => item)[0];
-
-    const e: any = a;
-    return `${e[0].public_id}.${e[0].format}`;
-  };
-
-  const normalizeSrc = (src: string) => (src[0] === "/" ? src.slice(1) : src);
-  function cloudinaryLoader(param: propsImageLoader) {
-    const params = [
-      "f_auto",
-      "c_limit",
-      "w_" + param.width,
-      "q_" + (param.quality || "auto"),
-    ];
-    const url = `https://res.cloudinary.com/${
-      process.env.CLOUDINARY_CLOUD_NAME
-    }/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/${normalizeSrc(param.src)}`;
-    return url;
-  }
-
+  
   return (
     <>
       <div className=" mx-[--main-x-margin] grid grid-cols-3 grid-rows-2 my-6 gap-6 h-max font-poppins">
@@ -108,18 +81,16 @@ export async function Hero() {
               </div>
             </div>
           </div>
-
+            
           <Image
             src={`https://res.cloudinary.com/${
               process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/next_hero/${imageData(
-              data.items,
-              1,
-            )}`}
-            alt="hola"
+            }/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/next_hero/${image1[0].image}`}
+            alt={String(image1[0].atext)}
             fill={true}
             style={{ objectFit: "fill", borderRadius: "10px" }}
           />
+          
         </div>
         <div className="flex flex-col relative w-full h-auto ">
           <span className="z-10 mx-8 mt-8 text-sm font-medium leading-[14px] text-gray-next-900 ">
@@ -158,12 +129,12 @@ export async function Hero() {
               />
             </svg>
           </div>
-
+          
           <Image
             src={`https://res.cloudinary.com/${
               process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/v1694466946/${imageData(data.items, 2)}`}
-            alt="main"
+            }/image/upload/v1694466946/${String(image2[0].image)}`}
+            alt={String(image2[0].atext)}
             fill={true}
             style={{
               objectFit: "cover",
@@ -171,6 +142,7 @@ export async function Hero() {
               borderRadius: "10px",
             }}
           />
+          
         </div>
 
         <span className=" relative  w-full h-auto ">
@@ -218,8 +190,8 @@ export async function Hero() {
           <Image
             src={`https://res.cloudinary.com/${
               process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/v1694466946/${imageData(data.items, 3)}`}
-            alt="main"
+            }/image/upload/v1694466946/${image3[0].image}`}
+            alt={String(image3[0].atext)}
             fill={true}
             style={{
               objectFit: "cover",
@@ -227,6 +199,7 @@ export async function Hero() {
               borderRadius: "10px",
             }}
           />
+
         </span>
       </div>
     </>
