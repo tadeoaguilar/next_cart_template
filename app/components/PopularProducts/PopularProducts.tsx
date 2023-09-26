@@ -1,21 +1,21 @@
 import Image from "next/image";
-import { fetchAllEntries, NextCategories ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
+import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
 
-export async function Categories() {
+export async function PopularProducts() {
 
-  const data =await fetchAllEntries<NextCategories>(
+  const data =await fetchAllEntries<NextProducts>(
     process.env.CONTENTFUL_SPACE_ID,
     process.env.CONTENTFUL_TOKEN,
-    "nextCategories"
+    "nextProducts"
     )
     const imageDataVar = data.items.map((item)=>{
-      const imgData: ImageCld =item.fields.imageCld[0]
-      return {category:item.fields.category, image:  imgData.public_id}})
+      const imgData: ImageCld =item.fields.image[0]
+      return {product:{...item.fields}, image:  imgData.public_id}})
   return (
     <>
       <div className=" mx-[--main-x-margin] h-max  font-poppins ">
         <span className="from-gray-next-900 text-[32px] font-semibold leading-4 ">
-          Popular Categories
+          Popular Products
         </span>
 
         <div className="grid grid-cols-6 w-full gap-6  mt-8">
@@ -35,17 +35,17 @@ export async function Categories() {
                     src={cloudinaryLoader({
                       src: String(item.image),
                       width: 100,
-                      format: "ar_1.4615,c_scale,w_190",
+                      format: "ar_1.1043,c_scale,w_254",
                     })}
                     width={190}
                     height={130}
-                    alt={String(item.category)}
+                    alt={String(item.product.productDescr)}
                     
                     style={{ objectFit: "fill", borderRadius: "10px" }}
                   />
                 </div>
                 <p className=" mb-6 text-lg leading-7 font-medium text-gray-next-900  hover:text-[#2C742F] ">
-                  {String(item.category)}
+                  {String(item.product.price)}
                 </p>
               </div>
             );

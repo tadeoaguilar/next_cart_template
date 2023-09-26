@@ -30,6 +30,22 @@ export type NextCategories = {
         order:EntryFieldTypes.Number
         }
 }
+export type NextProducts = {
+  contentTypeId: "nextProducts"
+  fields:{
+        productId: EntryFieldTypes.Text,
+        productDescr:EntryFieldTypes.Text,
+        price: EntryFieldTypes.Number
+        isOffer: EntryFieldTypes.Boolean,
+        offerPercentage: EntryFieldTypes.Number,
+        offerText:EntryFieldTypes.Text,
+        image:  ImageCld[],
+        stars: EntryFieldTypes.Number,
+        category:EntryFieldTypes.Text,
+        
+        
+        }
+}
 export type NextHero = {
   contentTypeId: "nextHero"
   fields:{
@@ -40,12 +56,10 @@ export type NextHero = {
         }
 }
 
+type ContentfulContent  = "nextHero" | "nextCategories" | "nextProducts"
+type ContentfulContentTypes  = NextHero | NextCategories | NextProducts
 
-
-
-type ContentfulContent  = "nextHero" | "nextCategories"
-
-export async function fetchAllEntries<T extends NextHero | NextCategories>(
+export async function fetchAllEntries<T extends ContentfulContentTypes>(
   spaceId: string,
   accessToken: string,
   contentType: ContentfulContent
@@ -54,12 +68,10 @@ export async function fetchAllEntries<T extends NextHero | NextCategories>(
     space: spaceId,
     accessToken: accessToken,
   });
-
   try {
     const entries = await client.getEntries<T>({
       content_type: contentType
-    });
-    
+    });    
     return entries;
   } catch (error) {
     console.error('Error fetching entries:', error);

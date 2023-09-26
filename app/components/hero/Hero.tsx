@@ -12,13 +12,13 @@ export async function Hero() {
     process.env.CONTENTFUL_TOKEN,
     "nextHero"
     )
-  
+    
     const imageDataVar = data.items.map((item)=>{
       const imgData: ImageCld =item.fields.imageCld[0]
       return { image:  String(imgData.public_id) +"."+ String(imgData.format)  , order: item.fields.order , atext: item.fields.alternateText  }})
   
       
-      const image1 = imageDataVar.filter((x)=> x.order ===1)
+      const image1 = imageDataVar.filter((x)=> x.order ===1) 
       const image2 = imageDataVar.filter((x)=> x.order ===2)
       const image3 = imageDataVar.filter((x)=> x.order ===3)
       
@@ -29,7 +29,7 @@ export async function Hero() {
       <div className=" mx-[--main-x-margin] grid grid-cols-3 grid-rows-2 my-6 gap-6 h-max font-poppins">
         <div className=" relative row-span-2  col-span-2 w-full h-full min-h-full min-w-full">
           <div className="relative hero-filter h-full z-10 rounded-[10px] flex flex-col items-center justify-start">
-            <div className="flex my-auto flex-col rounded-[10px] self-start ml-10 min-h-max  ">
+            <div className="flex my-auto flex-col rounded-[10px] self-start ml-8 min-h-max  ">
               <span className=" mx-1 font-semibold  text-5xl text-white-next mb-2 ">
                 Fresh & Healthy
               </span>
@@ -85,7 +85,7 @@ export async function Hero() {
           <Image
             src={`https://res.cloudinary.com/${
               process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/ar_1.4533,c_crop,x_0.15,y_0.12/next_hero/${image1[0].image}`}
+            }/image/upload/c_crop,x_0,y_0,ar_1.4533/next_hero/${image1[0].image}`}
             alt={String(image1[0].atext)}
             fill={true}
             style={{ objectFit: "fill", borderRadius: "10px" }}
