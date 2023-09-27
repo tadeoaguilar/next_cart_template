@@ -89,6 +89,7 @@ export const cloudinaryLoader = (param: propsImageLoader) => {
   const url = `https://res.cloudinary.com/${
     process.env.CLOUDINARY_CLOUD_NAME
   }/image/upload/${param.format}/${normalizeSrc(param.src)}`;
+  
   return url;
 };
 

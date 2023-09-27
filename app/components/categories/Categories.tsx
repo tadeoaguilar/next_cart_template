@@ -13,7 +13,7 @@ export async function Categories() {
       return {category:item.fields.category, image:  imgData.public_id}})
   return (
     <>
-      <div className=" mx-[--main-x-margin] h-max  font-poppins ">
+      <div className=" mx-[--main-x-margin] mt-14 h-max  font-poppins ">
         <span className="from-gray-next-900 text-[32px] font-semibold leading-4 ">
           Popular Categories
         </span>
