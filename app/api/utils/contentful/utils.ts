@@ -38,7 +38,7 @@ export type NextProducts = {
         price: EntryFieldTypes.Number
         isOffer: EntryFieldTypes.Boolean,
         offerPercentage: EntryFieldTypes.Number,
-        offerText:EntryFieldTypes.Text,
+        offerText:EntryFieldTypes.Text ,
         image:  ImageCld[],
         stars: EntryFieldTypes.Number,
         category:EntryFieldTypes.Text,

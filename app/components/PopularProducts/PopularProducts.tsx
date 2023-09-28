@@ -1,9 +1,17 @@
 import Image from "next/image";
 import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
+import Stars from "../ui/stars/Stars";
+import { MeasureMemoryMode } from "vm";
 
 export async function PopularProducts() {
-  const totalPrice= (price:number, perc: number) =>{
-      return  price*(perc/100)
+  const totalPrice= (price:number, perc: number): number =>{
+      console.log("price",price)
+      console.log("perc",perc)
+      console.log("resul",perc > 0?
+      (price*(perc/100)).toFixed(2) :price)
+      return  
+        perc > 0?
+          (price*(perc/100)).toFixed(2) :price
 
   }
   const data =await fetchAllEntries<NextProducts>(
@@ -17,7 +25,7 @@ export async function PopularProducts() {
   return (
     <>
       
-      <div className=" mx-[--main-x-margin] mt-14 h-max  font-poppins ">
+      <div className=" mx-[--main-x-margin] mt-14 h-max  font-poppins mb-2 ">
         <span className="text-gray-next-900 text-[32px] font-semibold leading-4 ">
           Popular Products
         </span>
@@ -39,11 +47,13 @@ export async function PopularProducts() {
                     className="relative m-1 "
                     key={index}
                   >
-                      
+                      {item.product.offerText?
                       <div className="absolute w-max ml-3 mt-3  font-normal py-1 px-2 text-sm text-white-next bg-danger text-">
-                        {item.product.offerText.toString()}
-                     </div>
-                    
+                        {item.product.offerText.toString() }
+                     </div>:
+                     <></>
+
+                     }
                     <Image
 
                       src={cloudinaryLoader({
@@ -66,14 +76,17 @@ export async function PopularProducts() {
                         <div className="flex flex-row ">                                                  
                             <span className="text-base font-poppins font-semibold leading-6 text-gray-next-900">
                               ${
-                                totalPrice(item.product.price as number,item.product.offerPercentage as number).toFixed(2)
+                               (item.product.price as number * (1-(item.product.offerPercentage as number))).toFixed(2)
                               } 
                             </span>
-                            <span className="text-base ml-1 font-normal leading-6 text-gray-next-400 line-through">
-                              ${
-                                item.product.price as number
-                              } 
-                            </span>
+                            {item.product.offerPercentage as number > 0?
+                              <span className="text-base ml-1 font-normal leading-6 text-gray-next-400 line-through">
+                                ${
+                                  (item.product.price as number).toFixed(2)
+                                } 
+                              </span>
+                              : <></>
+                            }
                         </div>
                           <div className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 ">                        
                             <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -81,8 +94,13 @@ export async function PopularProducts() {
                             </svg>                         
                           </div>
                       </div>
+                      <div className="flex flex-row "> 
+                        <Stars numOfStars={Number(item.product.stars)} />
+                      </div>
                   </div>
+               
                 </div>
+                
               </>
             );
           })}
