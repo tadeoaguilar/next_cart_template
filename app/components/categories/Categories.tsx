@@ -14,7 +14,7 @@ export async function Categories() {
   return (
     <>
       <div className=" mx-[--main-x-margin] mt-14 h-max  font-poppins ">
-        <span className="from-gray-next-900 text-[32px] font-semibold leading-4 ">
+        <span className="text-gray-next-900 text-[32px]  font-semibold leading-4 ">
           Popular Categories
         </span>
 
@@ -34,7 +34,7 @@ export async function Categories() {
                   <Image
                     src={cloudinaryLoader({
                       src: String(item.image),
-                      width: 100,
+                      width: 190,
                       format: "ar_1.4615,c_scale,w_190",
                     })}
                     width={190}

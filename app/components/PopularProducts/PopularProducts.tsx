@@ -30,7 +30,7 @@ export async function PopularProducts() {
           Popular Products
         </span>
 
-        <div className=" grid grid-cols-5 w-full gap-6  mt-8">
+        <div className=" grid grid-cols-5 w-full   mt-8">
           {imageDataVar.map((item,index) => {
            
             
@@ -44,7 +44,7 @@ export async function PopularProducts() {
                 
                   
                   <div
-                    className="relative m-1 "
+                    className="relative  "
                     key={index}
                   >
                       {item.product.offerText?
