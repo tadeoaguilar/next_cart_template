@@ -27,7 +27,7 @@ export async function Hero() {
   return (
     <>
       <div className=" mx-[--main-x-margin] grid grid-cols-3 grid-rows-2 mt-6 gap-6 h-max font-poppins">
-        <div className=" relative row-span-2  col-span-2 w-full h-full min-h-full min-w-full">
+        <div className=" relative row-span-2  col-span-2 w-[872px] h-full min-h-full">
           <div className="relative hero-filter h-full z-10 rounded-[10px] flex flex-col items-center justify-start">
             <div className="flex my-auto flex-col rounded-[10px] self-start ml-8 min-h-max  ">
               <span className=" mx-1 font-semibold  text-5xl text-white-next mb-2 ">
