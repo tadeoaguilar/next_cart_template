@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { fetchAllEntries,NextHero,ImageCld  } from "@/app/api/utils/contentful/utils";
-
-
+import AspectImage from "../ui/aspectImage/AspectImage";
+import { BannerTop1, BannerTop2, BannerTop3 } from "../ui/BannerTop/BannerTop";
 
 
 export async function Hero() {
@@ -26,71 +26,39 @@ export async function Hero() {
   
   return (
     <>
-      <div className="w-[--template-max-width] flex flex-row gap-6 mx-auto font-poppins">
-          <div className="relative border border-danger w-[872px]">  
-            <Image
+      <div className="w-[--template-max-width] rounded flex flex-row gap-6 mx-auto mt-6 font-poppins">
+          
+            <AspectImage 
               src={`https://res.cloudinary.com/${
                 process.env.CLOUDINARY_CLOUD_NAME
               }/image/upload/c_crop,x_0,y_0,ar_1.4533/next_hero/${image1[0].image}`}
-              alt={String(image1[0].atext)}
-              className="w-full h-full"
-              width={872}
-              height={600}
-              
-             
-            />            
-         </div> 
+              alt={String(image1[0].atext)} format="c_crop,x_0,y_0,ar_1.4533" width="872px"
+              modifier="rounded-[10px]" widthAR={872} heightAR={600} 
+              TopBanner={BannerTop1}
+              />            
          
-
+         
          <div className="flex flex-col gap-6">
-           <div className="relative w-[432px]  ">  
-              <Image
-                src={`https://res.cloudinary.com/${
-                  process.env.CLOUDINARY_CLOUD_NAME
-                }/image/upload/c_crop,x_0,y_0,ar_1.5/${String(image2[0].image)}`}
-                alt={String(image2[0].atext)}
-                
-                className=" w-full h-full scale-x-[-1]"
-                width={432}
-                height={288}
-              />
-            </div>
+            <AspectImage 
+              src={`https://res.cloudinary.com/${
+                process.env.CLOUDINARY_CLOUD_NAME
+              }/image/upload/c_crop,x_0,y_0,ar_1.5/${String(image2[0].image)}`}
+              alt={String(image2[0].atext)} format=""  width="432px" 
+              modifier="rounded-[10px] scale-x-[-1]" widthAR={432} heightAR={288}
+              TopBanner={BannerTop2}
+              />               
 
-            <div className="relative w-[432px]  ">  
-              <Image
-                src={`https://res.cloudinary.com/${
-                  process.env.CLOUDINARY_CLOUD_NAME
-                }/image/upload/c_crop,x_0,y_0,ar_1.5/${String(image3[0].image)}`}
-                alt={String(image2[0].atext)}
-                
-                className=" w-full h-full scale-x-[-1]"
-                width={432}
-                height={288}
-              />
-            </div>
-                
-
+            <AspectImage 
+              src={`https://res.cloudinary.com/${
+                process.env.CLOUDINARY_CLOUD_NAME
+              }/image/upload/c_crop,x_0,y_0,ar_1.5/${String(image3[0].image)}`}
+              alt={String(image2[0].atext)} format="" width="432px"
+              modifier="rounded-[10px] " widthAR={432} heightAR={288}
+              TopBanner={BannerTop3}
+            />  
           </div>
         </div>
-      {/*
-          
-          
-
-          <Image
-            src={`https://res.cloudinary.com/${
-              process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/v1694466946/${image3[0].image}`}
-            alt={String(image3[0].atext)}
-            fill={true}
-            style={{
-              objectFit: "cover",
-              transform: "scaleX(-1)",
-              borderRadius: "10px",
-            }}
-            
-          />
-          */}
-        
+       
     </>
   );
 }
