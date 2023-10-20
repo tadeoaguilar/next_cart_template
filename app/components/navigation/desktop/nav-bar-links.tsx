@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const NavBarLinks = () => {
   return (
-    <nav className=" flex flex-row w-full items-center  px-[--main-x-margin] justify-between bg-gray-next-800 p-4">
+    <nav className=" flex flex-row w-[--template-max-width] items-center mx-auto   justify-between bg-gray-next-800 p-4">
       <div className="flex flex-row w-max items-center justify-center gap-8">
         <div className="flex flex-row items-center">
           <span className="font-poppins text-sm font-medium leading-5 text-white-next ">

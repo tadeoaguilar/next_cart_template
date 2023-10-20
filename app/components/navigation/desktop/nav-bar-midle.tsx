@@ -2,8 +2,7 @@ import Image from "next/image";
 
 export const NavBarMidle = () => {
   return (
-    <nav className="flex flex-row my-7 w-full relative justify-between px-[--main-x-margin] mx-auto items-center  bg-white-next ">
-      <div className="flex flex-row min-w-max items-center">
+    <nav className="flex flex-row my-7 w-[--template-max-width] relative justify-between  mx-auto items-center  bg-white-next ">      <div className="flex flex-row min-w-max items-center">
         <svg
           width="183"
           height="39"
