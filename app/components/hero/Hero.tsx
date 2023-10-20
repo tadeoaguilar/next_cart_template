@@ -26,7 +26,7 @@ export async function Hero() {
   
   return (
     <>
-      <div className="w-[--template-max-width] rounded flex flex-row gap-6 mx-auto mt-6 font-poppins">
+      <div className="w-[--template-max-width] rounded flex flex-row gap-6 mx-auto mt-6 font-poppins ">
           
             <AspectImage 
               src={`https://res.cloudinary.com/${
@@ -38,7 +38,7 @@ export async function Hero() {
               />            
          
          
-         <div className="flex flex-col gap-6">
+         <div className="flex flex-col gap-6 ">
             <AspectImage 
               src={`https://res.cloudinary.com/${
                 process.env.CLOUDINARY_CLOUD_NAME

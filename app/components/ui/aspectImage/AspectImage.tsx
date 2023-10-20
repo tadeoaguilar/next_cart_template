@@ -19,13 +19,13 @@ const AspectImage: React.FC<Props> = (props) => {
       process.env.CLOUDINARY_CLOUD_NAME
     }/image/upload/${props.format}/${String(props.src)}`)
     return (
-        <div className={`relative w-[${props.width}]  `}>  
+        <div className={`relative w-[${props.width}]   `}>  
               {props.TopBanner? <props.TopBanner/> : null}
               <Image
                 src= {props.src}
                 alt={String(props.alt)}
                 
-                className={"w-full h-full " + props.modifier }
+                className={`w-[${props.width}] h-auto ` + props.modifier }
                 width={props.widthAR}
                 height={props.heightAR}
               />
