@@ -25,7 +25,7 @@ export async function PopularProducts() {
   return (
     <>
       
-      <div className=" mx-[--main-x-margin] mt-14 h-max  font-poppins mb-2 ">
+      <div className=" w-[--template-max-width] mx-auto mt-14 h-max  font-poppins mb-2 ">
         <span className="text-gray-next-900 text-[32px] font-semibold leading-4 ">
           Popular Products
         </span>

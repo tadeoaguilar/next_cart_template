@@ -28,6 +28,7 @@ const AspectImage: React.FC<Props> = (props) => {
                 className={`w-[${props.width}] h-auto ` + props.modifier }
                 width={props.widthAR}
                 height={props.heightAR}
+                
               />
             </div>
     );
