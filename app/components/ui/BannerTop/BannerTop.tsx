@@ -106,7 +106,7 @@ export const BannerTop2: React.FC = () => {
   export const BannerTop3: React.FC = () => {
     return(
       
-      <div className="absolute hero-green-filter rounded-[10px] h-full w-full z-10  flex flex-col items-center justify-start">
+      <div className="absolute hero-green-filter rounded-[10px] w-full h-full z-10  flex flex-col items-center justify-start">
             <div className="flex flex-col items-center my-auto text-white-next">
               <span className="text-sm font-medium leading-3 mb-3">
                 BEST DEAL
