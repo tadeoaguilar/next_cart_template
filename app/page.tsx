@@ -15,7 +15,7 @@ export default async function Home() {
           <BelowHero />
           <Categories />
           <PopularProducts />
-          
+        
         </main>
       </PageLayout>
     </>

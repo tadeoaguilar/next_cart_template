@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const NavBarSmall = () => {
   return (
-    <nav className="flex flex-row  justify-between py-1 w-[--template-max-width] mx-auto items-center shadow-next-box-s bg-white-next  ">
+    <nav className="flex flex-row  justify-between py-1  items-center shadow-next-box-s bg-white-next  ">
       <div className="flex flex-row min-w-max items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
