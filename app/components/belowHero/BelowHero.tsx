@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React ,{FC}from 'react'
 
 type Props = {
@@ -5,9 +6,9 @@ type Props = {
 }
 
 type PropsItems = {
-  title:String ,
-  description:String,
-  image: FC
+  title:string ,
+  description:string,
+  image: string
 
 
 }
@@ -21,10 +22,11 @@ const BelowHero: FC<Props> = ({children}) => {
 }
 
 const BelowHeroItem: FC<PropsItems> = (props:PropsItems) => {
+     console.log("comp",props)
   return (
     <div className=' flex flex-row items-center mt-6 h-max  gap-4'>
         <div >
-          {<props.image />}
+            <Image src={props.image} alt="alt" width={40} height={40} />
         </div>
         <div className='flex flex-col gap-2 '>
           <p className=" text-base font-semibold leading-5 "> {props.title} </p>
