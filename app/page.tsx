@@ -6,17 +6,12 @@ import { PopularProducts } from "./components/PopularProducts/PopularProducts";
 import {BelowHero,BelowHeroItem} from "./components/belowHero/BelowHero";
 import { isAwaitExpression } from "typescript";
 import { FC } from "react";
+import { dataBelowHero } from "./api/data/data";
 export default async function Home() {
 
-  type DataBelowHero = {
-    title:string ,
-    description:string,
-    image: string
-  
-  
-  }
-  const response = await  fetch("https://next-cart-template.vercel.app/api/ui/belowHero",{cache:'no-store'})
-  const dataBelowHero: DataBelowHero[] = await response.json();
+
+ 
+  const dataBelow= dataBelowHero
 
   
   return (
@@ -30,7 +25,7 @@ export default async function Home() {
           <BelowHero>
               {
 
-                dataBelowHero.map((item:DataBelowHero, index)=>{
+                dataBelowHero.map((item, index)=>{
                   
                   return(
                     <BelowHeroItem key={index} title={item.title} description={item.description} image={item.image} />
