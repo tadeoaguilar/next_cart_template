@@ -15,7 +15,7 @@ export default async function Home() {
   
   
   }
-  const response = await  fetch("https://vercel.com/tadeoaguilar/next-cart-template/DUwx5CgGmgMbfVzDohfJDnhyAnua/api/ui/belowHero",{cache:'no-store'})
+  const response = await  fetch("https://next-cart-template.vercel.app/api/ui/belowHero",{cache:'no-store'})
   const dataBelowHero: DataBelowHero[] = await response.json();
 
   
