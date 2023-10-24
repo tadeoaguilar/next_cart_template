@@ -1,8 +1,8 @@
 "use client";
 
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { CodeSnippet } from "../components/code-snippet";
-import { PageLayout } from "../components/page-layout";
+import { CodeSnippet } from "../code-snippet";
+import { PageLayout } from "../page-layout";
 import Image from "next/image";
 
 const Profile = () => {

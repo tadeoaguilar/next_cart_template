@@ -30,6 +30,16 @@ export type NextCategories = {
         order:EntryFieldTypes.Number
         }
 }
+export type NextOfferBanner = {
+  contentTypeId: "nextBannerOffer"
+  fields:{
+        title: EntryFieldTypes.Text,
+        title2: EntryFieldTypes.Text,
+        buttonDesc: EntryFieldTypes.Text,
+        image:  ImageCld[],
+       
+        }
+}
 export type NextProducts = {
   contentTypeId: "nextProducts"
   fields:{
@@ -55,9 +65,19 @@ export type NextHero = {
         order:EntryFieldTypes.Number
         }
 }
-
-type ContentfulContent  = "nextHero" | "nextCategories" | "nextProducts"
-type ContentfulContentTypes  = NextHero | NextCategories | NextProducts
+export type ProductType = {
+  productId: EntryFieldTypes.Text,
+  productDescr:EntryFieldTypes.Text,
+  price: EntryFieldTypes.Number
+  isOffer: EntryFieldTypes.Boolean,
+  offerPercentage: EntryFieldTypes.Number,
+  offerText:EntryFieldTypes.Text ,
+  image:  ImageCld[],
+  stars: EntryFieldTypes.Number,
+  category:EntryFieldTypes.Text,  
+  imagename: ImageCld} & ImageCld
+type ContentfulContent  = "nextHero" | "nextCategories" | "nextProducts" | "nextBannerOffer"
+type ContentfulContentTypes  = NextHero | NextCategories | NextProducts | NextOfferBanner
 
 export async function fetchAllEntries<T extends ContentfulContentTypes>(
   spaceId: string,

@@ -1,46 +1,40 @@
-'use client'
+
 import Image from "next/image";
-import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader,ProductType} from "@/app/api/utils/contentful/utils";
+import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
 import Stars from "../ui/stars/Stars";
-
+import { MeasureMemoryMode } from "vm";
 import AspectImage from "../ui/aspectImage/AspectImage";
-import React, {useEffect,useState} from "react";
 
+export async function PopularProducts() {
+  const totalPrice= (price:number, perc: number): number =>{
+    return 
+    perc > 0?
+          (price*(perc/100)).toFixed(2) :price
 
-export  const  PopularProducts= ()=> {
-  const [product, setProduct] = useState<ProductType[]>([])
-  
- 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-      const data = await fetch("/api/ui/product",{cache:"no-cache"})
-      const retData:ProductType[] = await data.json()     
-      setProduct(retData )
-    } catch (error) {
-      console.log(error)
-    }
-  };
-   fetchData();
-}, [])
-    console.log("imageCld",product)
-    
-    return (
+  }
+  const data =await fetchAllEntries<NextProducts>(
+    process.env.CONTENTFUL_SPACE_ID,
+    process.env.CONTENTFUL_TOKEN,
+    "nextProducts"
+    )
+    const imageDataVar = data.items.map((item)=>{
+      const imgData: ImageCld =item.fields.image[0]
+      return {product:{...item.fields}, image:  imgData.public_id}})
+  return (
     <>
       
       <div className="mt-14 h-max  font-poppins ">
         <span className="text-gray-next-900 text-[32px] font-semibold leading-4 ">
           Popular Products
         </span>
+
         <div className=" grid grid-cols-5 w-full   mt-8">
-          {product.map((item,index) => {
-            console.log("item3",`https://res.cloudinary.com/${
-              process.env.CLOUDINARY_CLOUD_NAME
-            }/image/upload/ar_1.1043,c_scale,w_254/next_categories/${item.public_id}.jpg`)
+          {imageDataVar.map((item,index) => {
+           
             
             return ( 
               <>
-                             
+                
                 <div
                   className=" flex flex-col   border border-gray-next-100 h-max items-center hover:border-[#2C742F] hover:text-[#2C742F] hover:border-solid hover:shadow-lg hover:shadow-green-next-400"
                   key={index}
@@ -51,40 +45,42 @@ export  const  PopularProducts= ()=> {
                     className="relative w-[254px] "
                     key={index}
                   >
-                      {item.offerText?
+                      {item.product.offerText?
                       <div className="absolute w-max ml-3 mt-3  font-normal py-1 px-2 text-sm text-white-next bg-danger text-">
-                        {item.offerText.toString() }
+                        {item.product.offerText.toString() }
                      </div>:
                      <></>
 
                      }
                     <AspectImage
 
-                      src= {`https://res.cloudinary.com/do7uf4vlt/image/upload/ar_1.1043,c_scale,w_254/${item.public_id}.jpg`}
+                      src= {`https://res.cloudinary.com/${
+                        process.env.CLOUDINARY_CLOUD_NAME
+                      }/image/upload/ar_1.1043,c_scale,w_254/${item.image}`}
                       format= "ar_1.1043,c_scale,w_254"  
                       width="254px"
                       widthAR={254} 
                       heightAR={230}
-                      alt={String(item.productDescr)}
+                      alt={String(item.product.productDescr)}
                       
                       
                     />
                   </div>
                   <div className=" self-start  w-[85%] m-3 text-sm font-normal text-gray-next-700  hover:text-[#2C742F] ">
                       <h1>
-                        {String(item.productDescr)}
+                        {String(item.product.productDescr)}
                       </h1>
                       <div className=" flex flex-row items-center justify-between">
                         <div className="flex flex-row ">                                                  
                             <span className="text-base font-poppins font-semibold leading-6 text-gray-next-900">
                               ${
-                               (Number(item.price) * (1-(Number(item.offerPercentage)))).toFixed(2)
+                               (item.product.price as number * (1-(item.product.offerPercentage as number))).toFixed(2)
                               } 
                             </span>
-                            {Number(item.offerPercentage) > 0?
+                            {item.product.offerPercentage as number > 0?
                               <span className="text-base ml-1 font-normal leading-6 text-gray-next-400 line-through">
                                 ${
-                                  (Number(item.price) ).toFixed(2)
+                                  (item.product.price as number).toFixed(2)
                                 } 
                               </span>
                               : <></>
@@ -97,19 +93,16 @@ export  const  PopularProducts= ()=> {
                           </div>
                       </div>
                       <div className="flex flex-row "> 
-                        <Stars numOfStars={Number(item.stars)} />
+                        <Stars numOfStars={Number(item.product.stars)} />
                       </div>
                   </div>
                
                 </div>
-
-
+                
               </>
             );
           })}
         </div>
-      
-        
       </div>
     </>
   );

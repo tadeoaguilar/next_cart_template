@@ -9,15 +9,13 @@ interface Props {
     modifier?: string,
     widthAR:number,
     heightAR:number,
-    TopBanner?: React.FC
+    TopBanner?: React.FC 
     // Define the props for your component here
 }
 
 const AspectImage: React.FC<Props> = (props) => {
     // Implement your component logic and JSX here
-    console.log(`https://res.cloudinary.com/${
-      process.env.CLOUDINARY_CLOUD_NAME
-    }/image/upload/${props.format}/${String(props.src)}`)
+
     return (
         <div className={`relative w-[${props.width}]   `}>  
               {props.TopBanner? <props.TopBanner/> : null}

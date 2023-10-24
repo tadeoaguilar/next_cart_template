@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { fetchAllEntries, NextCategories ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
-
+import AspectImage from "../ui/aspectImage/AspectImage";
 export async function Categories() {
 
   const data =await fetchAllEntries<NextCategories>(
@@ -28,20 +28,20 @@ export async function Categories() {
                 key={index}
               >
                 <div
-                  className="relative  my-4"
+                  className="relative w-[190px]  my-4"
                   key={index}
                 >
-                  <Image
-                    src={cloudinaryLoader({
-                      src: String(item.image),
-                      width: 190,
-                      format: "ar_1.4615,c_scale,w_190",
-                    })}
-                    width={190}
-                    height={130}
+                  <AspectImage
+                    src={`https://res.cloudinary.com/${
+                      process.env.CLOUDINARY_CLOUD_NAME
+                    }/image/upload/ar_1.4615,c_scale,w_190/${item.image}`}
+                    format= "ar_1.4615,c_scale,w_190"
+                    width="190px"
+                    widthAR={190}
+                    heightAR={130}
                     alt={String(item.category)}
                     
-                    style={{ objectFit: "fill", borderRadius: "10px" }}
+                    
                   />
                 </div>
                 <p className=" mb-6 text-lg leading-7 font-medium text-gray-next-900  hover:text-[#2C742F] ">

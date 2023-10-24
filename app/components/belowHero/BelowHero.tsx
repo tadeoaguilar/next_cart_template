@@ -22,7 +22,7 @@ const BelowHero: FC<Props> = ({children}) => {
 }
 
 const BelowHeroItem: FC<PropsItems> = (props:PropsItems) => {
-     console.log("comp",props)
+     
   return (
     <div className=' flex flex-row items-center mt-6 h-max  gap-4'>
         <div >

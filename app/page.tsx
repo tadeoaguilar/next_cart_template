@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { PageLayout } from "./components/page-layout";
 import { Hero } from "./components/hero/Hero";
@@ -7,6 +8,9 @@ import {BelowHero,BelowHeroItem} from "./components/belowHero/BelowHero";
 import { isAwaitExpression } from "typescript";
 import { FC } from "react";
 import { dataBelowHero } from "./api/data/data";
+import {OfferBanner} from "./components/offers/OfferBanner/OfferBanner";
+
+
 export default async function Home() {
 
 
@@ -16,12 +20,12 @@ export default async function Home() {
   
   return (
     <>
-
+      
       <PageLayout>
        
         <Hero />
 
-        <main className="bg-white-next">
+        <main className="bg-white-next font-poppins">
           <BelowHero>
               {
 
@@ -37,9 +41,10 @@ export default async function Home() {
           </BelowHero>
           <Categories />
           <PopularProducts />
-        
+          <OfferBanner  />
         </main>
       </PageLayout>
+      
     </>
   );
 }

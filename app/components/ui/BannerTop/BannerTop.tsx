@@ -148,3 +148,11 @@ export const BannerTop2: React.FC = () => {
           </div>
               )
     }
+
+export const BannerOffer1: React.FC = () => {
+      return(
+        <div className="absolute rounded w-full h-full z-10  flex flex-col items-center justify-start mt-9">
+        <p>Hola a Todos</p>
+        </div>
+      )
+      }
