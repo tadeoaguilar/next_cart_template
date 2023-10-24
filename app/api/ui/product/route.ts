@@ -1,4 +1,4 @@
-
+import {NextRequest,NextResponse} from "next/server"
 import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
 
 
@@ -8,7 +8,7 @@ import { fetchAllEntries, NextProducts ,ImageCld, cloudinaryLoader} from "@/app/
 
 
 
-export async function GET() { 
+export async function GET(request:NextRequest) { 
   const data =await fetchAllEntries<NextProducts>(
     process.env.CONTENTFUL_SPACE_ID,
     process.env.CONTENTFUL_TOKEN,
@@ -20,5 +20,5 @@ export async function GET() {
       
       return {...item.fields, ...imgData  }})
      
-  return Response.json( imageDataVar);
+  return NextResponse.json( imageDataVar);
 }
