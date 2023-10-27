@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { NavBarCounter } from "../nav-bar-counter";
+import { NavBarCounter } from "./nav-bar-counter";
 import { StoreProvider } from "../../StoreProvider/StoreProvider";
 
 export const NavBarMidle = () => {
@@ -88,7 +88,7 @@ export const NavBarMidle = () => {
             />
           </svg>
           <StoreProvider>
-          <NavBarCounter />
+            <NavBarCounter />
           </StoreProvider>
         </div>
         <div className="flex  flex-nowrap flex-col gap-2 w-max">

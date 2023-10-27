@@ -119,15 +119,3 @@ export  const  PopularProducts= ()=> {
     </>
   );
 }
-type Props = {
-  children: React.ReactNode
-}
-export const ProductsProvider:FC<Props> = ({children}) => {
-  return (
-    <>
-      <Provider store={store}>
-          {children}
-      </Provider>
-    </>
-  );
-}
