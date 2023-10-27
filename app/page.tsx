@@ -3,7 +3,8 @@ import Image from "next/image";
 import { PageLayout } from "./components/page-layout";
 import { Hero } from "./components/hero/Hero";
 import { Categories } from "./components/categories/Categories";
-import { PopularProducts, ProductsProvider } from "./components/PopularProducts/PopularProducts";
+import { PopularProducts } from "./components/PopularProducts/PopularProducts";
+import { StoreProvider } from "./components/StoreProvider/StoreProvider";
 import {BelowHero,BelowHeroItem} from "./components/belowHero/BelowHero";
 import { isAwaitExpression } from "typescript";
 import { FC } from "react";
@@ -21,7 +22,7 @@ export default async function Home() {
   return (
     <>
      
-      <PageLayout>
+     
       
         <Hero />
 
@@ -40,15 +41,15 @@ export default async function Home() {
               }
           </BelowHero>
           <Categories />
-          <ProductsProvider>
+          <StoreProvider>
             <PopularProducts />
-          </ProductsProvider>
+          </StoreProvider>
           
           
           <OfferBanner  />
         </main>
       
-      </PageLayout>
+     
     
     </>
   );

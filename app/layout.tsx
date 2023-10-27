@@ -4,6 +4,7 @@ import { Inter, Poppins } from "next/font/google";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import Head from "next/head";
+import { NavBar } from "./components/navigation/desktop/nav-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 const pops = Poppins({ weight: "200", subsets: ["latin"] });
@@ -19,9 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <UserProvider>
-        <body className={pops.className}>{children}</body>
-      </UserProvider>
+        
+        <body className="w-[--template-max-width] mx-auto font-poppins">
+          <NavBar />
+          {children}
+        </body>
+      
     </html>
   );
 }

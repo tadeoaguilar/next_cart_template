@@ -28,8 +28,8 @@ export  const  PopularProducts= ()=> {
   };
    fetchData();
 }, [])
-    const count = useSelector((state: any) => state.counter.value);
-    const dispatch = useDispatch();
+    const count = useAppSelector((state: any) => state.counter.value);
+    const dispatch = useAppDispatch();
     console.log("Redux",count)
 
 

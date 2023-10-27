@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { NavBarCounter } from "../nav-bar-counter";
+import { StoreProvider } from "../../StoreProvider/StoreProvider";
 
 export const NavBarMidle = () => {
   return (
@@ -85,9 +87,9 @@ export const NavBarMidle = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <label className=" border border-white-next border-solid  absolute top-0 right-0  bg-[#2C742F] text-[10px] font-medium font-poppins  text-white-next text-center rounded-[50%]  h-4 w-4">
-            2
-          </label>
+          <StoreProvider>
+          <NavBarCounter />
+          </StoreProvider>
         </div>
         <div className="flex  flex-nowrap flex-col gap-2 w-max">
           <span className="font-poppins text-[11px] text-gray-next-700 font-normal leading-3">
