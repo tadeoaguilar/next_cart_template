@@ -19,11 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+
     <html lang="en">
-        
+
         <body className="w-[--template-max-width] mx-auto font-poppins">
+          <UserProvider>
           <NavBar />
           {children}
+          </UserProvider>
         </body>
       
     </html>
