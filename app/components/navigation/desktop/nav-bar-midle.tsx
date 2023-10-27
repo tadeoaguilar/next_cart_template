@@ -1,11 +1,6 @@
 import Image from "next/image";
-import { useAppDispatch ,useAppSelector} from "@/app/store";
-import { useEffect } from "react";
-import NavBarCounter from "./nav-bar-counter";
-import { StoreProvider } from "../../providers/Providers";
 
 export const NavBarMidle = () => {
-
   return (
     <nav className="flex flex-row my-7  relative justify-between  items-center  bg-white-next ">      <div className="flex flex-row min-w-max items-center">
         <svg
@@ -90,9 +85,9 @@ export const NavBarMidle = () => {
               strokeLinejoin="round"
             />
           </svg>
-          <StoreProvider >
-            <NavBarCounter />
-          </StoreProvider>
+          <label className=" border border-white-next border-solid  absolute top-0 right-0  bg-[#2C742F] text-[10px] font-medium font-poppins  text-white-next text-center rounded-[50%]  h-4 w-4">
+            2
+          </label>
         </div>
         <div className="flex  flex-nowrap flex-col gap-2 w-max">
           <span className="font-poppins text-[11px] text-gray-next-700 font-normal leading-3">

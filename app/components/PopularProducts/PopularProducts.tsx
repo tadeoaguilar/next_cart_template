@@ -28,9 +28,9 @@ export  const  PopularProducts= ()=> {
   };
    fetchData();
 }, [])
-    
-    const dispatch = useAppDispatch();
-    
+    const count = useSelector((state: any) => state.counter.value);
+    const dispatch = useDispatch();
+    console.log("Redux",count)
 
 
     return (
@@ -116,6 +116,18 @@ export  const  PopularProducts= ()=> {
       
         
       </div>
+    </>
+  );
+}
+type Props = {
+  children: React.ReactNode
+}
+export const ProductsProvider:FC<Props> = ({children}) => {
+  return (
+    <>
+      <Provider store={store}>
+          {children}
+      </Provider>
     </>
   );
 }
