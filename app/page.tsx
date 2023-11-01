@@ -22,11 +22,8 @@ export default async function Home() {
   return (
     <>
      
-     
-      
-        <Hero />
-
         <main className="bg-white-next font-poppins">
+          <Hero />
           <BelowHero>
               {
 
