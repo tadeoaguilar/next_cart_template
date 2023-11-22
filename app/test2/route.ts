@@ -29,6 +29,6 @@ for await (const item of queueServiceClient.listQueues()) {
 console.log(`- ${item.name}`);
 }
 
-const enqueueQueueResponse = await queueClient.sendMessage(btoa("Hola BTOA with E-commerce AZURE"));
+const enqueueQueueResponse = await queueClient.sendMessage(btoa("Hola BTOA with E-commerce AZURE and NEXTJS"));
 return NextResponse.json(enqueueQueueResponse.messageId);
 }
