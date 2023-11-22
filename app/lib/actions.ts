@@ -8,8 +8,9 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
+    console.log("action - auth",Object.fromEntries(formData))
     await signIn('credentials', Object.fromEntries(formData));
-    console.log(formData)
+    
   } catch (error) {
     if ((error as Error).message.includes('CredentialsSignin')) {
       return 'CredentialsSignin';
