@@ -129,11 +129,11 @@ const normalizeSrc = (src: string) => (src[0] === "/" ? src.slice(1) : src);
   
 
   const res =await fetchAllEntries<NextHero>(
-    process.env.CONTENTFUL_SPACE_ID,
-    process.env.CONTENTFUL_TOKEN,
+    process.env.CONTENTFUL_SPACE_ID || "",
+    process.env.CONTENTFUL_TOKEN || "",
     "nextHero"
     )
- 
+ //@ts-expect-error
   const imageEntry:ImageCld = res.items[0].fields.imageCld[0]
   return (NextResponse.json({"one":res.items[0].fields.image,"two": imageEntry.public_id }))
 }

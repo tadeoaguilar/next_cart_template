@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import { NavBarCounter } from "./nav-bar-counter";
 import { StoreProvider } from "../../StoreProvider/StoreProvider";

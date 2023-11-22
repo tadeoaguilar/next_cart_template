@@ -5,15 +5,16 @@ import { BannerTop1, BannerTop2, BannerTop3 } from "../ui/BannerTop/BannerTop";
 
 
 export async function Hero() {
-
+ 
 
   const data =await fetchAllEntries<NextHero>(
-    process.env.CONTENTFUL_SPACE_ID,
-    process.env.CONTENTFUL_TOKEN,
+    process.env.CONTENTFUL_SPACE_ID || "",
+    process.env.CONTENTFUL_TOKEN || "",
     "nextHero"
     )
     
     const imageDataVar = data.items.map((item)=>{
+      //@ts-expect-error
       const imgData: ImageCld =item.fields.imageCld[0]
       return { image:  String(imgData.public_id) +"."+ String(imgData.format)  , order: item.fields.order , atext: item.fields.alternateText  }})
   

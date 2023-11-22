@@ -8,11 +8,12 @@ import {BannerOffer1} from "../../ui/BannerTop/BannerTop";
 export async function OfferBanner()
 {
     const data =await fetchAllEntries<NextOfferBanner>(
-        process.env.CONTENTFUL_SPACE_ID,
-        process.env.CONTENTFUL_TOKEN, "nextBannerOffer"
+        process.env.CONTENTFUL_SPACE_ID || "",
+        process.env.CONTENTFUL_TOKEN || "", "nextBannerOffer"
         
         )
         const imageDataVar = data.items.map((item)=>{
+            //@ts-expect-error
           const imgData: ImageCld =item.fields.image[0]
           return {banner:item.fields, image:  imgData.public_id}})
 

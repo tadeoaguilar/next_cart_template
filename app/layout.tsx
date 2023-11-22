@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 import Link from "next/link";
 import Head from "next/head";
 import { NavBar } from "./components/navigation/desktop/nav-bar";
@@ -23,10 +23,10 @@ export default function RootLayout({
     <html lang="en">
 
         <body className="w-[--template-max-width] mx-auto font-poppins">
-          <UserProvider>
+
           <NavBar />
           {children}
-          </UserProvider>
+
         </body>
       
     </html>

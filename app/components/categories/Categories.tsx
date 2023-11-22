@@ -4,11 +4,12 @@ import AspectImage from "../ui/aspectImage/AspectImage";
 export async function Categories() {
 
   const data =await fetchAllEntries<NextCategories>(
-    process.env.CONTENTFUL_SPACE_ID,
-    process.env.CONTENTFUL_TOKEN,
+    process.env.CONTENTFUL_SPACE_ID || "",
+    process.env.CONTENTFUL_TOKEN || "",
     "nextCategories"
     )
     const imageDataVar = data.items.map((item)=>{
+      //@ts-expect-error
       const imgData: ImageCld =item.fields.imageCld[0]
       return {category:item.fields.category, image:  imgData.public_id}})
   return (

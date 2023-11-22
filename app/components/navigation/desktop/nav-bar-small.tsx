@@ -1,5 +1,7 @@
-import Image from "next/image";
 
+import Image from "next/image";
+import { signOut } from "@/auth";
+import { NavBarLogout } from "./nav-bar-logout";
 export const NavBarSmall = () => {
   return (
     <nav className="flex flex-row  justify-between py-1  items-center shadow-next-box-s bg-white-next  ">
@@ -74,7 +76,7 @@ export const NavBarSmall = () => {
           /
         </span>
         <span className="whitespace-nowrap font-poppins font-thin text-xs text-gray-next-600">
-          Sign Up
+          <NavBarLogout />
         </span>
       </div>
     </nav>
