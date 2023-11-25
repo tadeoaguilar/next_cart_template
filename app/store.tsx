@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import {counterSlice}  from './reducers/productReducers';
+import { userSlice}  from './reducers/userReducers';
 
 const store = configureStore({
     reducer: {
-        counter:counterSlice.reducer
+        counter:counterSlice.reducer,
+        user: userSlice.reducer
     },
     
 });

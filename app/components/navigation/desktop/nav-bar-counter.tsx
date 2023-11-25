@@ -1,8 +1,9 @@
 "use client";
 
 import { useAppSelector } from "@/app/store";
-
+import { auth } from "@/auth";
 export const NavBarCounter = () => {
+    
     const count = useAppSelector((state: any) => state.counter.value);
   return (
     <>

@@ -7,10 +7,13 @@ import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
 import { signOut } from '@/auth';
- 
+import { login } from '../reducers/userReducers';
+
 export default function LoginForm() {
   const [code, action] = useFormState(authenticate, undefined);
- 
+  const {pending} = useFormStatus();
+  const todo = useFormStatus();
+
   return (
     <form action={action} className="space-y-0">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-0">
@@ -67,7 +70,7 @@ export default function LoginForm() {
             <>
     
               <p aria-live="polite" className="text-sm text-red-500">
-                Invalid credentials {code}
+                Invalid credentials 
               </p>
             </>
           )

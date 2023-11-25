@@ -2,7 +2,9 @@
 import Image from "next/image";
 import { signOut } from "@/auth";
 import { NavBarLogout } from "./nav-bar-logout";
+import { NavBarLogIn } from "./nav-bar-login";
 export const NavBarSmall = () => {
+  
   return (
     <nav className="flex flex-row  justify-between py-1  items-center shadow-next-box-s bg-white-next  ">
       <div className="flex flex-row min-w-max items-center">
@@ -28,7 +30,7 @@ export const NavBarSmall = () => {
         </svg>
 
         <span className=" mx-1 whitespace-nowrap font-poppins font-thin text-xs text-gray-next-600">
-          Store Location: Lincoln- 344, Illinois, Chicago, USA{" "}
+          Store Location: Lincoln- 344, Illinois, Chicago, USA
         </span>
       </div>
       <div className="flex flex-row min-w-max items-center">
@@ -76,6 +78,7 @@ export const NavBarSmall = () => {
           /
         </span>
         <span className="whitespace-nowrap font-poppins font-thin text-xs text-gray-next-600">
+          <NavBarLogIn />
           <NavBarLogout />
         </span>
       </div>

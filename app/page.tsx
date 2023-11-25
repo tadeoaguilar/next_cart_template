@@ -7,16 +7,14 @@ import { PopularProducts } from "./components/PopularProducts/PopularProducts";
 import { StoreProvider } from "./components/StoreProvider/StoreProvider";
 import {BelowHero,BelowHeroItem} from "./components/belowHero/BelowHero";
 
-import { FC } from "react";
 import { dataBelowHero } from "./api/data/data";
 import {OfferBanner} from "./components/offers/OfferBanner/OfferBanner";
-import { Provider } from "react-redux";
-import store from "./store";
+import { auth } from "@/auth";
 
 export default async function Home() {
 
-
- 
+ const session = await auth();
+ console.log("session",session)
   const dataBelow= dataBelowHero
   
   return (
@@ -24,6 +22,7 @@ export default async function Home() {
      
         <main className="bg-white-next font-poppins">
           <Hero />
+          
           <BelowHero>
               {
 
