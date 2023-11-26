@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import {counterSlice}  from './reducers/productReducers';
 import { userSlice}  from './reducers/userReducers';
-
+import { userCartSlice } from './reducers/cartReducers';
 const store = configureStore({
     reducer: {
         counter:counterSlice.reducer,
-        user: userSlice.reducer
+        userCart: userCartSlice.reducer,
     },
     
 });
