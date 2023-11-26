@@ -8,7 +8,7 @@ export interface cartItemsState {
 
 }
 
-const initialState: cartItemsState[] = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') || '{}') : []
+const initialState: cartItemsState[] = []//localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') || '{}') : []
 
 export const userCartSlice = createSlice({
   name: 'cartReducer',
@@ -27,14 +27,14 @@ export const userCartSlice = createSlice({
 
       if (existItem) {
         const newState = [ ...state.map((x)=> x.productId===item.productId?{...x,quantity:x.quantity+1}:x)]
-        localStorage.setItem('cartItems', JSON.stringify(newState))
+        //localStorage.setItem('cartItems', JSON.stringify(newState))
         return (newState)
       }
       else
       {
 
       console.log("NO existItem",)
-      localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
+     // localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
       return ([...state,{...item}])
     }
     }
