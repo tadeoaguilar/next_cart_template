@@ -16,7 +16,7 @@ subscriptionId="$(az account list --query "[?isDefault].id" -o tsv)"
 nextAppId="47cea16c-df46-4f69-9bd6-f5dd13946454"
 ##OBJECT ID of the Enterprise application
 # Public GitHub repository containing an Azure Functions code project.
-gitrepo=""tadeoaguilar/next_cart_api_queue""
+gitrepo=""tadeoaguilar/next_cart_api_template""
 ## Enable authenticated git deployment in your subscription when using a private repo. 
 #token=<Replace with a GitHub access token when using a private repo.>
 #az functionapp deployment source update-token \
@@ -50,10 +50,10 @@ az functionapp config appsettings set --name $functionApp --resource-group $reso
 echo $cosmosConnectionString
 #az group delete --name $resourceGroup
 
-az functionapp deployment github-actions add --repo $gitrepo --resource-group $resourceGroup  --name $functionApp --login-with-github --branch "main"
-curl -s "https://${functionApp}.azurewebsites.net/api/httpexample?name=Azure"
+
 
 az role assignment create --assignee $nextAppId --role "Storage Queue Data Contributor" --scope "//subscriptions/$subscriptionId/resourceGroups/$resourceGroup" 
-
+az functionapp deployment github-actions add --repo $gitrepo --resource-group $resourceGroup  --name $functionApp --login-with-github --branch "main"
+curl -s "https://${functionApp}.azurewebsites.net/api/httpexample?name=Azure"
 
 
