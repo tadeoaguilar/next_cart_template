@@ -53,6 +53,10 @@ echo $cosmosConnectionString
 
 
 az role assignment create --assignee $nextAppId --role "Storage Queue Data Contributor" --scope "//subscriptions/$subscriptionId/resourceGroups/$resourceGroup" 
+az cosmosdb sql role definition create --account-name $cosmosDBname --resource-group  $cosmosDBGroup --body '{"RoleName": "PasswordlessReadWrite","Type": "CustomRole","AssignableScopes": ["/"],"Permissions": [{"DataActions": ["Microsoft.DocumentDB/databaseAccounts/readMetadata","Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/*","Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/*" ]}]}'
+
+
+
 az functionapp deployment github-actions add --repo $gitrepo --resource-group $resourceGroup  --name $functionApp --login-with-github --branch "main"
 curl -s "https://${functionApp}.azurewebsites.net/api/httpexample?name=Azure"
 

@@ -10,7 +10,7 @@ export interface cartItemsState {
 
 const initialState: cartItemsState[] = 
   typeof window !== 'undefined' && 
-  window.localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') || '{}') : []
+  window.localStorage.getItem('cartItems') ? JSON.parse(window.localStorage.getItem('cartItems') || '{}') : []
 
 export const userCartSlice = createSlice({
   name: 'cartReducer',
@@ -28,8 +28,8 @@ export const userCartSlice = createSlice({
       const existItem = state.find((x) => x.productId === item.productId) 
 
       if (existItem) {
-        const newState = [ ...state.map((x)=> x.productId===item.productId?{...x,quantity:x.quantity+1}:x)]
-        typeof window !== 'undefined' && localStorage.setItem('cartItems', JSON.stringify(newState))  
+        const newState = [ ...state.map((x)=> x.productId===item.productId?{...x,quantity:x.quantity +1 }:x)]
+        typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify(newState))  
         
         return (newState)
       }
@@ -37,7 +37,7 @@ export const userCartSlice = createSlice({
       {
 
       console.log("NO existItem",)
-     typeof window !== 'undefined' && localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
+     typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
       return ([...state,{...item}])
     }
     }
