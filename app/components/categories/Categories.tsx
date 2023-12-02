@@ -12,6 +12,7 @@ export async function Categories() {
       //@ts-expect-error
       const imgData: ImageCld =item.fields.imageCld[0]
       return {category:item.fields.category, image:  imgData.public_id}})
+      
   return (
     <>
       <div className="mt-14 h-max  font-poppins ">

@@ -14,6 +14,6 @@ export async function GET(request:NextRequest) {
      
       
       return {...item.fields, ...imgData  }})
-     
+    
   return NextResponse.json( imageDataVar);
 }

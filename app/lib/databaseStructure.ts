@@ -2,15 +2,20 @@ import { z } from "zod";
 
 const productSchema = z.object({
     storeId: z.string().uuid(),
-    productId: z.string().uuid(),    
-    categoryId: z.string().uuid(),
+    productId: z.string().uuid(),            
     type: z.string().default(''),
-    SKU: z.string().default(''),
-    name: z.string().default(''),
-    description: z.string().default(''),
+    categoryId: z.string(),
+    description: z.string().default(''),    
+    SKU: z.string().default(''),   
     price: z.number().default(0.0),
-    purcharseDays: z.number().default(0),
-    image: z.string().default(''),
+    purcharseDays: z.number().default(0),    
+    isOffer: z.boolean().default(false),
+    offerPercentage: z.number().default(0.0),
+    offerText:z.string().default('') ,
+    imageURL:  z.string().url().default(''),
+    imageId: z.string().default(''),
+    stars: z.number().default(0),
+    
 
 });
 
@@ -18,10 +23,9 @@ type Product = z.infer<typeof productSchema>;
 
 const categorySchema = z.object({    
     storeId: z.string().uuid(),
-    categoryId: z.string().uuid(),
     type: z.string().default(''),
-    name: z.string().default(''),
-    description: z.string().default(''),
+    categoryId: z.string(),        
+    image: z.string().default(''),
    
 });
 

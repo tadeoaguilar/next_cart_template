@@ -2,40 +2,51 @@
 import { DefaultAzureCredential } from "@azure/identity";
 
 // Get Cosmos Client
-import { CosmosClient } from "@azure/cosmos";
+import { CosmosClient, PartitionKeyDefinitionVersion, PartitionKeyKind } from "@azure/cosmos";
 import { dot } from "node:test/reporters";
 import { configDotenv } from "dotenv";
+import { map } from "zod";
 // Provide required connection from environment variables
 // Endpoint format: https://YOUR-RESOURCE-NAME.documents.azure.com:443/
 configDotenv();
-const CosmosEndpoint = "https://nextcartcosmosdb.documents.azure.com:443/";
-console.log(CosmosEndpoint)
+const CosmosEndpoint = process.env.COSMOS_ENDPOINT;
+
 // Set Database name and container name with unique timestamp
 const cosmosSecret = process.env.COSMOS_SECRET;
 const databaseName = 'webCartDB';
-const containerName = ['customer','product'];
+const containersMetaData = [{container:'customer'
+                            ,partitionKeyPath:['/storeId','/customerId']},
+                            {container:'product',
+                            partitionKeyPath:['/storeId','/categoryId']},
+                            {container:'owner',
+                            partitionKeyPath:['/ownerId']
+                          }
+                          ]
+                            ;
 
 // Authenticate to Azure Cosmos DB
 const cosmosClient = new CosmosClient(cosmosSecret);
 
 
-const partitionKeyPath = [`/id`];
+
+
 const { database } = await cosmosClient.databases.createIfNotExists({
     id: databaseName,
   });
+  console.log("database",database.id)
+  containersMetaData.map( async(containerData) => {
+    
   const { container } = await database.containers.createIfNotExists({
-    id: containerName,
+    id: containerData.container,
     partitionKey: {
-      paths: partitionKeyPath,
-    },
-  });
+      paths: containerData.partitionKeyPath,
+      version:PartitionKeyDefinitionVersion.V2,
+      kind: PartitionKeyKind.MultiHash,
+    }});
+    console.log("container",container.id)
   
-  const {resources} = await container.items.query("SELECT * FROM c").fetchAll()
-  
-  for (const resource of resources) {
-       const item = await container.item(resource.id, resource.id).delete();
-       console.log ("Item deleted:" , item.item.id)
-  }
+})
+
     
      
     
