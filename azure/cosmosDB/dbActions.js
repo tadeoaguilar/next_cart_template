@@ -27,6 +27,7 @@ const { database } = await cosmosClient.databases.createIfNotExists({
   
   console.log("Delete items in to database '" + databaseName + "' and container '" + containerName + "'");
   const {resources} = await container.items.query("SELECT * FROM c").fetchAll()
+  
   var item = {}
   for (const resource of resources) {
       switch (containerName) {

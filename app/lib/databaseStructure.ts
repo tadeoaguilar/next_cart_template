@@ -19,7 +19,7 @@ const productSchema = z.object({
 
 });
 
-type Product = z.infer<typeof productSchema>;
+export type Product = z.infer<typeof productSchema>;
 
 const categorySchema = z.object({    
     storeId: z.string().uuid(),
@@ -29,7 +29,7 @@ const categorySchema = z.object({
    
 });
 
-type Category = z.infer<typeof categorySchema>;
+export type Category = z.infer<typeof categorySchema>;
 
 const storeSchema = z.object({
     storeId: z.string().uuid(),
@@ -39,7 +39,7 @@ const storeSchema = z.object({
    
 });
 
-type Store = z.infer<typeof storeSchema>;
+export type Store = z.infer<typeof storeSchema>;
 
 const orderDetailSchema = z.object({    
     productId: z.string().uuid(),    
@@ -63,7 +63,7 @@ export const orderSchema = z.object({
 
 });
 
-type Order = z.infer<typeof orderSchema>;
+export type Order = z.infer<typeof orderSchema>;
 
 const userSchema = z.object({
     userId: z.string().uuid(),
@@ -77,7 +77,7 @@ const userSchema = z.object({
 
 });
 
-type User = z.infer<typeof userSchema>;
+export type User = z.infer<typeof userSchema>;
 
 export const data = {
     orderId: crypto.randomUUID(),

@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { fetchAllEntries, NextCategories ,ImageCld, cloudinaryLoader} from "@/app/api/utils/contentful/utils";
+import { fetchAllEntries } from "@/app/lib/cosmosDB";
+import { Category,  } from "@/app/lib/databaseStructure";
 import AspectImage from "../ui/aspectImage/AspectImage";
 export async function Categories() {
 
-  const data =await fetchAllEntries<NextCategories>(
+  /*const data =await fetchAllEntries<NextCategories>(
     process.env.CONTENTFUL_SPACE_ID || "",
     process.env.CONTENTFUL_TOKEN || "",
     "nextCategories"
@@ -12,7 +13,12 @@ export async function Categories() {
       //@ts-expect-error
       const imgData: ImageCld =item.fields.imageCld[0]
       return {category:item.fields.category, image:  imgData.public_id}})
-      
+    */  
+      const data =await fetchAllEntries<Category>(
+       "PRODUCTCATEGORY", "product"
+        )
+        
+           
   return (
     <>
       <div className="mt-14 h-max  font-poppins ">
@@ -21,7 +27,7 @@ export async function Categories() {
         </span>
 
         <div className="grid grid-cols-6 w-full gap-6  mt-8">
-          {imageDataVar.map((item,index) => {
+          {data.map((item,index) => {
            
             //console.log(cloudinaryLoader({src:item.image.values,width:100}))
             return (
@@ -41,13 +47,13 @@ export async function Categories() {
                     width="190px"
                     widthAR={190}
                     heightAR={130}
-                    alt={String(item.category)}
+                    alt={item.categoryId}
                     
                     
                   />
                 </div>
                 <p className=" mb-6 text-lg leading-7 font-medium text-gray-next-900  hover:text-[#2C742F] ">
-                  {String(item.category)}
+                  {item.categoryId}
                 </p>
               </div>
             );

@@ -1,24 +1,28 @@
 'use client'
 
 import { ProductType} from "@/app/api/utils/contentful/utils";
+import { Product } from "@/app/lib/databaseStructure";
 import Stars from "../ui/stars/Stars";
 
 import AspectImage from "../ui/aspectImage/AspectImage";
 import React, {useEffect,useState} from "react";
 import { useAppDispatch ,useAppSelector} from "@/app/store";
-
+import { fetchAllEntries } from "@/app/lib/cosmosDB";
+import { Category } from "@/app/lib/databaseStructure";
 import { incrementByAmount} from "@/app/reducers/productReducers";
 import {cartAddItem}  from "@/app/reducers/cartReducers";
 export  const  PopularProducts= ()=> {
-  const [product, setProduct] = useState<ProductType[]>([])
-  
+  //const [product, setProduct] = useState<ProductType[]>([])
+  const [product, setProduct] = useState<Product[]>([])
  
   useEffect(() => {
     const fetchData = async () => {
       try {
-      const data = await fetch("/api/ui/product",{cache:"no-cache"})
-      const retData:ProductType[] = await data.json()     
-      setProduct(retData )
+      const data = await fetch("/test3",{cache:"no-cache"})
+
+      const retData:Product[] = await data.json()     
+    
+      setProduct(retData)
     } catch (error) {
       console.log(error)
     }
@@ -45,7 +49,7 @@ export  const  PopularProducts= ()=> {
                              
                 <div
                   className=" flex flex-col   border border-gray-next-100 h-max items-center hover:border-[#2C742F] hover:text-[#2C742F] hover:border-solid hover:shadow-lg hover:shadow-green-next-400"
-                  key={String(item.productId)}
+                  key={String(item.productId  )}
                 >
                 
                   
@@ -62,19 +66,19 @@ export  const  PopularProducts= ()=> {
                      }
                     <AspectImage
 
-                      src= {`https://res.cloudinary.com/do7uf4vlt/image/upload/ar_1.1043,c_scale,w_254/${item.public_id}.jpg`}
+                      src= {`https://res.cloudinary.com/do7uf4vlt/image/upload/ar_1.1043,c_scale,w_254/${item.imageId}.jpg`}
                       format= "ar_1.1043,c_scale,w_254"  
                       width="254px"
                       widthAR={254} 
                       heightAR={230}
-                      alt={String(item.productDescr)}
+                      alt={String(item.description)}
                       
                       
                     />
                   </div>
                   <div className=" self-start  w-[85%] m-3 text-sm font-normal text-gray-next-700  hover:text-[#2C742F] ">
                       <h1>
-                        {String(item.productDescr)}
+                        {String(item.description)}
                       </h1>
                       <div className=" flex flex-row items-center justify-between">
                         <div className="flex flex-row ">                                                  
@@ -93,7 +97,10 @@ export  const  PopularProducts= ()=> {
                             }
                         </div>
                           <div className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 " 
-                          onClick={(e) =>{dispatch(cartAddItem({
+                          onClick={(e) =>{
+                            console.log("Add to cart",item.productId)
+                            dispatch(incrementByAmount(1))
+                            dispatch(cartAddItem({
                             
                             productId: String(item.productId),
                             quantity: 1
