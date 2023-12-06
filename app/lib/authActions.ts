@@ -8,8 +8,7 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    console.log('formData', formData);
-    console.log("prevState", prevState);
+
 
     await signIn('credentials', Object.fromEntries(formData));
 

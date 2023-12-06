@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { OrderDetail } from '../lib/databaseStructure';
 
-
-export interface cartItemsState {
-  userId?: string,
-  productId: string,
-  quantity: number
-
-}
+type cartItemsState = OrderDetail
 
 const initialState: cartItemsState[] = 
   typeof window !== 'undefined' && 
@@ -22,7 +17,7 @@ export const userCartSlice = createSlice({
       console.log("state",state)
       console.log("action",action.payload)
   
-      console.log({...state, ...action.payload})
+      
 
       const item = action.payload
       const existItem = state.find((x) => x.productId === item.productId) 
@@ -36,7 +31,7 @@ export const userCartSlice = createSlice({
       else
       {
 
-      console.log("NO existItem",)
+      
      typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
       return ([...state,{...item}])
     }

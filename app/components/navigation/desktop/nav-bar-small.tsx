@@ -3,7 +3,10 @@ import Image from "next/image";
 import { signOut } from "@/auth";
 import { NavBarLogout } from "./nav-bar-logout";
 import { NavBarLogIn } from "./nav-bar-login";
+import { NavBarLocation } from "./nav-bar-location";
 export const NavBarSmall = () => {
+  const location = typeof window !== 'undefined' && window.location.toString() 
+  console.log("location",location)
   
   return (
     <nav className="flex flex-row  justify-between py-1  items-center shadow-next-box-s bg-white-next  ">
@@ -30,8 +33,9 @@ export const NavBarSmall = () => {
         </svg>
 
         <span className=" mx-1 whitespace-nowrap font-poppins font-thin text-xs text-gray-next-600">
-          Store Location: Lincoln- 344, Illinois, Chicago, USA
+          Store Location: Lincoln- 344, Illinois, Chicago, USA2 
         </span>
+        
       </div>
       <div className="flex flex-row min-w-max items-center">
         <span className=" mr-[6px] whitespace-nowrap font-poppins font-thin text-xs text-gray-next-600">

@@ -18,7 +18,7 @@ export  const  PopularProducts= ()=> {
   useEffect(() => {
     const fetchData = async () => {
       try {
-      const data = await fetch("/test3",{cache:"no-cache"})
+      const data = await fetch("/api/product",{cache:"no-cache"})
 
       const retData:Product[] = await data.json()     
     
@@ -98,12 +98,15 @@ export  const  PopularProducts= ()=> {
                         </div>
                           <div className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 " 
                           onClick={(e) =>{
+                            e.preventDefault()
                             console.log("Add to cart",item.productId)
                             dispatch(incrementByAmount(1))
                             dispatch(cartAddItem({
                             
-                            productId: String(item.productId),
-                            quantity: 1
+                            "productId": item.productId,
+                            "name": item.description,
+                            "quantity": 1,
+                            "price":item.price,
                          
                           }))}}>                        
                             <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">

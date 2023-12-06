@@ -5,7 +5,7 @@
 
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
-import { authenticate } from '@/app/lib/actions';
+import { authenticate } from '@/app/lib/authActions';
 import { signOut } from '@/auth';
 import { login } from '../reducers/userReducers';
 

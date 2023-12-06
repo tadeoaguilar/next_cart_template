@@ -13,9 +13,10 @@ const CosmosEndpoint = process.env.COSMOS_ENDPOINT;
 
 // Set Database name and container name with unique timestamp
 const cosmosSecret = process.env.COSMOS_SECRET;
+console.log("cosmosSecret",cosmosSecret)
 const databaseName = 'webCartDB';
 const containersMetaData = [{container:'customer'
-                            ,partitionKeyPath:['/storeId','/customerId']},
+                            ,partitionKeyPath:['/userId']},
                             {container:'product',
                             partitionKeyPath:['/storeId','/categoryId']},
                             {container:'owner',

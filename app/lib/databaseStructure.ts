@@ -32,7 +32,7 @@ const categorySchema = z.object({
 export type Category = z.infer<typeof categorySchema>;
 
 const storeSchema = z.object({
-    storeId: z.string().uuid(),
+    storeId: z.string(),
     type: z.string().default(''),
     name: z.string().default(''),
     description: z.string().default(''),
@@ -49,16 +49,17 @@ const orderDetailSchema = z.object({
 
 });
 
-interface OrderDetail extends z.infer<typeof orderDetailSchema> {}
+export type OrderDetail = z.infer<typeof orderDetailSchema> 
 
 export const orderSchema = z.object({
     orderId: z.string().uuid(),
-    storeId: z.string().uuid(),
+    storeId: z.string(),
     type: z.string().default(''),
     userId: z.string(),
     status: z.string().default(''),
     total: z.number().default(0.0),
     purcharseDays: z.number().default(0),
+    orderDate: z.date().default(new Date()),    
     detail: z.array(orderDetailSchema).default([]),    
 
 });
