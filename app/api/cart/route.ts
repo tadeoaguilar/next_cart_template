@@ -44,7 +44,7 @@ export async function POST(request: NextRequest ) {
     );    
     const queueClient = queueServiceClient.getQueueClient(queueName);
     const enqueueQueueResponse = await queueClient.sendMessage(btoa(JSON.stringify(order.data)));
-    
+      console.log(`Sent message successfully, service assigned message Id: ${enqueueQueueResponse.messageId}, service assigned request Id: ${enqueueQueueResponse.requestId}`); 
        return NextResponse.json({"queue":enqueueQueueResponse.messageId , "orderBody":order.data});
     }
     
