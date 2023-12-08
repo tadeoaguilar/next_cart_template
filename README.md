@@ -2,7 +2,13 @@ AuthJs
 https://authjs.dev
 
 
+docker build -t nextjs_docker:dev .
+docker run -p 3002:3001 --name nextjscontainerag  nextjs_docker:dev
 
+Push to docker hub
+docker tag nextjs_docker:dev tadeoam/next_cart:dev
+
+docker push tadeoam/next_cart:dev
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

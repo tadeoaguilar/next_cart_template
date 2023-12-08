@@ -18,8 +18,9 @@ async function getUser(email: string): Promise<User | undefined> {
     throw new Error('Failed to fetch user.');
   }
 }
- 
+ //trutHost so Docker can work
 export const { auth, signIn, signOut } = NextAuth({
+  trustHost: true,
   ...authConfig,
   providers: [
     Credentials({
