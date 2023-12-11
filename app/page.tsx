@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <>
      
-        <main className="bg-white-next font-poppins">
+        
           <Hero />
           
           <BelowHero>
@@ -43,7 +43,7 @@ export default async function Home() {
           
           
           <OfferBanner  />
-        </main>
+        
       
      
     
