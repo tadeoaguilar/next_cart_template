@@ -45,7 +45,8 @@ const orderDetailSchema = z.object({
     productId: z.string().uuid(),    
     name: z.string(),
     quantity: z.number().default(0),
-    price: z.number().default(0.0),    
+    price: z.number().default(0.0),   
+    image: z.string().default(''), 
 
 });
 
