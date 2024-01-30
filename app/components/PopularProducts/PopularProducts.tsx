@@ -9,7 +9,7 @@ import React, {useEffect,useState} from "react";
 import { useAppDispatch ,useAppSelector} from "@/app/store";
 import { fetchAllEntries } from "@/app/lib/cosmosDB";
 import { Category } from "@/app/lib/databaseStructure";
-import { incrementByAmount} from "@/app/reducers/productReducers";
+import { incrementByAmount,setCounter} from "@/app/reducers/productReducers";
 import {cartAddItem}  from "@/app/reducers/cartReducers";
 export  const  PopularProducts= ()=> {
   //const [product, setProduct] = useState<ProductType[]>([])
@@ -100,7 +100,7 @@ export  const  PopularProducts= ()=> {
                           onClick={(e) =>{
                             e.preventDefault()
                             console.log("Add to cart",item.productId)
-                            dispatch(incrementByAmount(1))
+                            dispatch(setCounter(15))
                             dispatch(cartAddItem({
                             
                             "productId": item.productId,

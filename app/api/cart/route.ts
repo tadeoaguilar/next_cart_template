@@ -15,7 +15,7 @@ export async function GET(request: NextRequest ) {
 return NextResponse.json(data);
 }
 export async function POST(request: NextRequest ) {
-
+    console.log("API CART POST");
     const data = await request.json() as OrderDetail[]  ;
     const session = await auth();
     

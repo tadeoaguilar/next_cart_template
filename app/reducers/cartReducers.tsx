@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OrderDetail } from '../lib/databaseStructure';
 
-type cartItemsState = OrderDetail
+type cartItemsState = OrderDetail 
 //const initialState: cartItemsState[] = [{productId:"1",quantity:1,name:"test Redux",price:1.1 },{productId:"1",quantity:1,name:"test Redux2",price:1.1 }]
 const initialState: cartItemsState[] = 
   typeof window !== 'undefined' && 
@@ -23,7 +23,7 @@ export const userCartSlice = createSlice({
       const existItem = state.find((x) => x.productId === item.productId) 
 
       if (existItem) {
-        const newState = [ ...state.map((x)=> x.productId===item.productId?{...x,quantity:x.quantity +1 }:x)]
+        const newState = [ ...state.map((x)=> x.productId===item.productId?{...x,quantity:x.quantity +item.quantity }:x)]
        typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify(newState))  
         
         return (newState)
