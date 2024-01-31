@@ -2,10 +2,11 @@
 import Image from "next/image";
 import { NavBarCounter } from "./nav-bar-counter";
 import { StoreProvider } from "../../StoreProvider/StoreProvider";
-
+import Link from "next/link";
 export const NavBarMidle = () => {
   return (
     <nav className="flex flex-row my-7  relative justify-between  items-center  bg-white-next ">      <div className="flex flex-row min-w-max items-center">
+        <Link href="/">
         <svg
           width="183"
           height="39"
@@ -22,6 +23,7 @@ export const NavBarMidle = () => {
             fill="#002603"
           />
         </svg>
+        </Link>
       </div>
       <div className="flex flex-row">
         <div className="flex flex-row items-center  pl-4 py-3 w-max rounded-l-md  border border-solid  border-gray-next-100">

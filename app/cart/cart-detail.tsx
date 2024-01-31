@@ -1,4 +1,5 @@
 'use client'
+import { onClickSubmitCart } from '../lib/cartActions';
 import { OrderDetail } from '../lib/databaseStructure';
 import { MouseEvent, use, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
@@ -7,6 +8,8 @@ import {cartAddItem}  from "@/app/reducers/cartReducers";
 
 export const  CartDetail = () => {
   const [isClient, setIsClient] = useState(false)
+  const [numSubTotal, setNumSubTotal] = useState(0)
+  const [response01, setResponse01] = useState("")
   const data = useAppSelector(state => state.userCart);
   const [cart, setCart] = useState(data);
   const dispatch = useAppDispatch();
@@ -40,7 +43,7 @@ export const  CartDetail = () => {
   useEffect(() => {
     setCart(data);
     setIsClient(true);  
-  
+    setNumSubTotal(Number(calculateSubTotal(data)));
   }, [ data]);
 
 
@@ -84,10 +87,10 @@ export const  CartDetail = () => {
                           <div className=" basis-1/5 "> {`$${item.price.toFixed(2)}`}</div>
                           <div className="  flex basis-1/5 justify-start"> 
                             <div className="border border-gray-next-100 rounded-2xl p-1">
-                            <button className="rounded-full w-8 h-8  bg-gray-next-300 px-2" onClick={() => onClickUpdateCart(item , -1)} >-</button>
-                              <label className="px-6 self-center">  {item.quantity} </label>
-                            <button className="rounded-full w-8 h-8  bg-gray-next-300 px-2" onClick={() => onClickUpdateCart(item , +1)} >+</button>
-                          </div>
+                              <button className="rounded-full w-8 h-8  bg-gray-next-300 px-2" onClick={() => onClickUpdateCart(item , -1)} >-</button>
+                                <label className="px-6 self-center">  {item.quantity} </label>
+                              <button className="rounded-full w-8 h-8  bg-gray-next-300 px-2" onClick={() => onClickUpdateCart(item , +1)} >+</button>
+                            </div>
                           </div>
                           <div className=" pl-1 basis-1/5 "> {`$${(item.quantity * item.price).toFixed(2)} `}</div>
                     </div>
@@ -104,7 +107,7 @@ export const  CartDetail = () => {
           <h1 className='from-gray-next-900 font-medium text-xl '>Cart Total  </h1>
           <div className='flex flex-row justify-between text-gray-next-700 font-normal text-sm mt-5 border-b border-b-gray-next-100 py-3'>
             <h1 className=''>Subtotal </h1>
-            <h1 className='font-semibold'>{`$ ${calculateSubTotal(cart)}`} </h1>
+            <h1 className='font-semibold'>{`$ ${numSubTotal}`} </h1>
           </div>
           <div className='flex flex-row justify-between text-gray-next-700 font-normal text-sm mt-5 border-b border-b-gray-next-100 py-3'>
               <h1 className=''>Shipping </h1>
@@ -112,14 +115,26 @@ export const  CartDetail = () => {
           </div>
           <div className='flex flex-row justify-between text-gray-next-700 font-semibold text-sm mt-5 border-b border-b-gray-next-100 py-3'>
               <h1 className=''>Total </h1>
-              <h1 className=''> {`$ ${calculateSubTotal(cart)}`}</h1>
+              <h1 className=''> {`$ ${numSubTotal}`}</h1>
           </div>
 
-          <button className='flex h-[48px]  items-center justify-center  rounded-md bg-primary-next text-gray-next-50  '> 
+          <button 
+          onClick={async() => { 
+            const response: any= await onClickSubmitCart(cart)
+            setResponse01(response.queue? response.queue: {})
+            console.log("response",response01)
+          }}
+          className='flex h-[48px]  items-center justify-center  rounded-md bg-primary-next text-gray-next-50  '> 
           Proceed to Checkout
           </button>
-            
-        </div>
+
+          {response01.length >0?
+            <h1>Orden:{JSON.stringify(response01)}</h1>
+            :<> </>
+          }
+        
+        </div> 
+          
         </div>
         </>
         }

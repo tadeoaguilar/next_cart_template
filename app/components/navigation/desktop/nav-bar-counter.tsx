@@ -6,6 +6,7 @@ import { use, useEffect } from "react";
 import { OrderDetail } from '@/app/lib/databaseStructure';
 import { useState } from "react";
 import { set } from "zod";
+import Link from "next/link";
 export const  NavBarCounter = () => {
     
     
@@ -25,12 +26,12 @@ export const  NavBarCounter = () => {
     <>
         {
             cartCount?
-            <div onClick={() => onClickSubmitCart(cart)}
-             
-                      
-            className=" flex border border-white-next border-solid  absolute top-0 right-0  bg-[#2C742F] font-semibold text-xs text-center font-poppins items-center justify-center  text-white-next rounded-full  h-5 w-5">
-            {cartCount}
-          </div>
+            //<div onClick={() => onClickSubmitCart(cart)}
+            <Link href="/cart">
+            <button className=" flex border border-white-next border-solid  absolute top-0 right-0  bg-[#2C742F] font-semibold text-xs text-center font-poppins items-center justify-center  text-white-next rounded-full  h-5 w-5">
+              {cartCount}
+            </button>
+            </Link>
             :null    
         }
     </>

@@ -8,5 +8,7 @@ export async function onClickSubmitCart(cart: any) {
         },
         body: JSON.stringify(cart)
     });
-    return await rawResponse.json();
+    const response = await rawResponse.json();
+   
+    return await response;
 }
