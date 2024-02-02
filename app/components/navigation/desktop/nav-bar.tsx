@@ -1,5 +1,3 @@
-
-
 import { NavBarIcon } from "./nav-bar-logo";
 import { NavBarSmall } from "./nav-bar-small";
 import { NavBarMidle } from "./nav-bar-midle";
@@ -15,7 +13,6 @@ export const NavBar = () => {
       <NavBarSmall />
       <NavBarMidle />
       <NavBarLinks />
-
     </nav>
   );
 };

@@ -19,16 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-
     <html lang="en">
-
-        <body className="w-[--template-max-width] mx-auto font-poppins">
-
-          <NavBar />
-          {children}
-
-        </body>
-      
+      <body className="w-[--template-max-width] mx-auto font-poppins">
+        <NavBar />
+        {children}
+      </body>
     </html>
   );
 }

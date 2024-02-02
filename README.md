@@ -1,9 +1,8 @@
 AuthJs
 https://authjs.dev
 
-
 docker build -t nextjs_docker:dev .
-docker run -p 3002:3001 --name nextjscontainerag  nextjs_docker:dev
+docker run -p 3002:3001 --name nextjscontainerag nextjs_docker:dev
 
 Push to docker hub
 docker tag nextjs_docker:dev tadeoam/next_cart:dev

@@ -1,25 +1,20 @@
-'use client';
- 
+"use client";
 
-
-
-import { Button } from './button';
-import { useFormState, useFormStatus } from 'react-dom';
-import { authenticate } from '@/app/lib/authActions';
-import { signOut } from '@/auth';
-import { login } from '../reducers/userReducers';
+import { Button } from "./button";
+import { useFormState, useFormStatus } from "react-dom";
+import { authenticate } from "@/app/lib/authActions";
+import { signOut } from "@/auth";
+import { login } from "../reducers/userReducers";
 
 export default function LoginForm() {
   const [code, action] = useFormState(authenticate, undefined);
-  const {pending} = useFormStatus();
+  const { pending } = useFormStatus();
   const todo = useFormStatus();
 
   return (
     <form action={action} className="space-y-0">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-0">
-        <h1 className={` mb-3 text-2xl`}>
-          Please log in to continue.
-        </h1>
+        <h1 className={` mb-3 text-2xl`}>Please log in to continue.</h1>
         <div className="w-full">
           <div>
             <label
@@ -37,7 +32,6 @@ export default function LoginForm() {
                 placeholder="Enter your email address"
                 required
               />
-    
             </div>
           </div>
           <div className="mt-4">
@@ -57,39 +51,31 @@ export default function LoginForm() {
                 required
                 minLength={6}
               />
-    
             </div>
           </div>
         </div>
         <LoginButton />
-       
-        <div className="flex h-8 items-end space-x-1">
-          {
 
-            code === 'CredentialsSignin' && (
+        <div className="flex h-8 items-end space-x-1">
+          {code === "CredentialsSignin" && (
             <>
-    
               <p aria-live="polite" className="text-sm text-red-500">
-                Invalid credentials 
+                Invalid credentials
               </p>
             </>
-          )
-        
-        
-        }
+          )}
         </div>
       </div>
     </form>
   );
 }
- 
+
 function LoginButton() {
   const { pending } = useFormStatus();
- 
+
   return (
     <Button className="mt-4 w-full" aria-disabled={pending}>
-      Log in 
+      Log in
     </Button>
   );
 }
-
