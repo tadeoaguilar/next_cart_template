@@ -96,7 +96,7 @@ export  const  PopularProducts= ()=> {
                               : <></>
                             }
                         </div>
-                          <button className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 hover:bg-green-next-400" 
+                          <button className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 hover:bg-green-next-400 hover:text-white-next  border border-gray-next-100 hover:border-[#2C742F]" 
                           onClick={(e) =>{
                             e.preventDefault()
                             console.log("Add to cart",item.productId)

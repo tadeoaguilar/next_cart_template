@@ -130,16 +130,19 @@ export const  CartDetail = () => {
               <h1 className=''>Total </h1>
               <h1 className=''> {`$ ${numSubTotal.toFixed(2)}`}</h1>
           </div>
-
+          {cart.length > 0 ?
           <button 
           onClick={async() => { 
             const response: any= await onClickSubmitCart(cart)
-            setResponse01(response.queue? response.queue: {})
-            console.log("response",response01)
+         
+              setResponse01( response.queue) 
+         
           }}
           className='flex h-[48px]  items-center justify-center  rounded-md bg-primary-next text-gray-next-50  '> 
           Proceed to Checkout
           </button>
+          :<></>
+          }
 
           {response01.length >0?
             <h1>Orden:{JSON.stringify(response01)}</h1>

@@ -1,6 +1,7 @@
 'use client'
 import Image from "next/image";
 import { NavBarCounter } from "./nav-bar-counter";
+import { NavBarTotal } from "./nav-bar-total";
 import { StoreProvider } from "../../StoreProvider/StoreProvider";
 import Link from "next/link";
 export const NavBarMidle = () => {
@@ -94,13 +95,13 @@ export const NavBarMidle = () => {
             <NavBarCounter />
           </StoreProvider>
         </div>
-        <div className="flex  flex-nowrap flex-col gap-2 w-max">
+        <div className="flex  flex-nowrap flex-col  w-max">
           <span className="font-poppins text-[11px] text-gray-next-700 font-normal leading-3">
             Shopping Cart
           </span>
-          <span className="font-poppins text-sm leading-4 text-gray-next-900 font-medium ">
-            $57.00
-          </span>
+          <StoreProvider>
+            <NavBarTotal />
+          </StoreProvider>
         </div>
       </div>
     </nav>
