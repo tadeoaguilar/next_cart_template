@@ -29,9 +29,9 @@ export  const  PopularProducts= ()=> {
   };
    fetchData();
 }, [])
-    const count = useAppSelector((state: any) => state.counter.value);
+    
     const dispatch = useAppDispatch();
-    console.log("Redux",count)
+    
 
 
     return (
@@ -96,7 +96,7 @@ export  const  PopularProducts= ()=> {
                               : <></>
                             }
                         </div>
-                          <div className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 " 
+                          <button className=" flex justify-center items-center  w-10 h-10  leading-9 rounded-full bg-green-next-50 hover:bg-green-next-400" 
                           onClick={(e) =>{
                             e.preventDefault()
                             console.log("Add to cart",item.productId)
@@ -113,7 +113,7 @@ export  const  PopularProducts= ()=> {
                             <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
                               <path d="M6.66667 8.83333H4.16667L2.5 18H17.5L15.8333 8.83333H13.3333M6.66667 8.83333V6.33333C6.66667 4.49239 8.15905 3 10 3V3C11.8409 3 13.3333 4.49238 13.3333 6.33333V8.83333M6.66667 8.83333H13.3333M6.66667 8.83333V11.3333M13.3333 8.83333V11.3333" stroke="#1A1A1A" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>                         
-                          </div>
+                          </button>
                       </div>
                       <div className="flex flex-row "> 
                         <Stars numOfStars={Number(item.stars)} />

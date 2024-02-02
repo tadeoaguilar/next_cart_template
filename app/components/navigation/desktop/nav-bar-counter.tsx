@@ -13,13 +13,14 @@ export const  NavBarCounter = () => {
     const cart: OrderDetail[]  = useAppSelector((state: any) => state.userCart);
     const [cartCount, setCartCount] = useState(0)  
   useEffect(() => {    
+    setCartCount(0)
   cart.reduce((acc, item) => {
     setCartCount(acc + item.quantity)
     return(acc + item.quantity)},  
     0)
   }, [cart])
-    console.log("cart Counter",cart)
-    console.log("cart Count",cartCount)
+    
+    
     
 
   return (

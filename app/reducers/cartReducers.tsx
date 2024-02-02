@@ -14,8 +14,7 @@ export const userCartSlice = createSlice({
 
     
     cartAddItem: (state: cartItemsState[], action: PayloadAction<cartItemsState>) => {
-      console.log("state",state)
-      console.log("action",action.payload)
+      
   
       
 
@@ -35,6 +34,15 @@ export const userCartSlice = createSlice({
      typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify([...state,{...item}]))   
       return ([...state,{...item}])
     }
+    },
+    cartDeleteItem: (state: cartItemsState[], action: PayloadAction<string>) => {
+      
+      
+      const item = action.payload      
+      const newState = state.filter((x) => x.productId !== item)      
+      typeof window !== 'undefined' && window.localStorage.setItem('cartItems', JSON.stringify(newState))   
+      return(newState)
+
     }
      
     },
@@ -42,6 +50,6 @@ export const userCartSlice = createSlice({
 )
 
 // Action creators are generated for each case reducer function
-export const {  cartAddItem } = userCartSlice.actions
+export const {  cartAddItem,cartDeleteItem } = userCartSlice.actions
 
 export default userCartSlice.reducer  

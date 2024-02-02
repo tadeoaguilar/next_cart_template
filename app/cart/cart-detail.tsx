@@ -4,11 +4,11 @@ import { OrderDetail } from '../lib/databaseStructure';
 import { MouseEvent, use, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import AspectImage from "@/app/components/ui/aspectImage/AspectImage";
-import {cartAddItem}  from "@/app/reducers/cartReducers";
+import {cartAddItem,cartDeleteItem}  from "@/app/reducers/cartReducers";
 
 export const  CartDetail = () => {
   const [isClient, setIsClient] = useState(false)
-  const [numSubTotal, setNumSubTotal] = useState(0)
+  const [numSubTotal, setNumSubTotal] = useState(0.00)
   const [response01, setResponse01] = useState("")
   const data = useAppSelector(state => state.userCart);
   const [cart, setCart] = useState(data);
@@ -38,6 +38,18 @@ export const  CartDetail = () => {
     
  }
   
+ const onClickDeleteItem = (item: string ) => {
+  console.log("clicked",item)
+  
+
+    
+  dispatch(cartDeleteItem(
+   item,
+   
+ 
+  ))
+  
+}
 
 
   useEffect(() => {
@@ -93,6 +105,7 @@ export const  CartDetail = () => {
                             </div>
                           </div>
                           <div className=" pl-1 basis-1/5 "> {`$${(item.quantity * item.price).toFixed(2)} `}</div>
+                          <button className="rounded-full w-8 h-8  bg-warning-next px-2 rotate-45" onClick={()=>onClickDeleteItem(item.productId)} >+</button>
                     </div>
   
   
@@ -107,7 +120,7 @@ export const  CartDetail = () => {
           <h1 className='from-gray-next-900 font-medium text-xl '>Cart Total  </h1>
           <div className='flex flex-row justify-between text-gray-next-700 font-normal text-sm mt-5 border-b border-b-gray-next-100 py-3'>
             <h1 className=''>Subtotal </h1>
-            <h1 className='font-semibold'>{`$ ${numSubTotal}`} </h1>
+            <h1 className='font-semibold'>{`$ ${numSubTotal.toFixed(2)}`} </h1>
           </div>
           <div className='flex flex-row justify-between text-gray-next-700 font-normal text-sm mt-5 border-b border-b-gray-next-100 py-3'>
               <h1 className=''>Shipping </h1>
@@ -115,7 +128,7 @@ export const  CartDetail = () => {
           </div>
           <div className='flex flex-row justify-between text-gray-next-700 font-semibold text-sm mt-5 border-b border-b-gray-next-100 py-3'>
               <h1 className=''>Total </h1>
-              <h1 className=''> {`$ ${numSubTotal}`}</h1>
+              <h1 className=''> {`$ ${numSubTotal.toFixed(2)}`}</h1>
           </div>
 
           <button 
